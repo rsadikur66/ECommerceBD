@@ -2,7 +2,7 @@
     $scope.name = "DokanBD";
     $scope.obj = {};
     $scope.obj.Virus = {};
-    getgriddata();
+    //getgriddata();
     function getgriddata() {
         $scope.menudata = [];
         var gridData = menuService.GetMenuData();

@@ -78,13 +78,16 @@
                 <th>Category Name Bangla</th>
                 <th>Category Name English</th>
             </tr>
-            <tr ng-repeat="v in obj.categories" ng-class="{red: hover}" ng-mouseover="hover = true" ng-mouseleave="hover = false" ng-click="rowSelect(v)">
+            <tr dir-paginate="v in obj.categories |itemsPerPage:5" pagination-id="bed" >
                 <td>{{v.CATEGORY_ID}}</td>
                 <td>{{v.T_LANG1_NAME}}</td>
                 <td>{{v.T_LANG2_NAME}}</td>
             </tr>
         </table>
-        <paging-control paging-size="pagingSize" noofitem="dataPerPage" total-items="totalItems" display-items="displayItems"></paging-control>
+        <dir-pagination-controls pagination-id="bed" max-size="5"
+                                 direction-links="true"
+                                 boundary-links="true">
+        </dir-pagination-controls>
 
     </div>
 </div>

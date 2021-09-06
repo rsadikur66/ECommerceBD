@@ -1,6 +1,6 @@
 ﻿/// <reference path="../scripts/angular.min.js" />
 /// <reference path="../../../scripts/angular_intellisense.js" />
-var app = angular.module('EcommerceBD', ['ui.select', 'ngSanitize']);
+var app = angular.module('EcommerceBD', ['ui.select', 'ngSanitize', 'angularUtils.directives.dirPagination']);
 
 app.run(function ($rootScope, $templateCache) {
     $rootScope.$on('$routeChangeStart', function (event, next, current) {

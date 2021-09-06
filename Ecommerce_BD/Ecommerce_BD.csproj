@@ -211,7 +211,6 @@
     <Content Include="Images\select2.png" />
     <Content Include="Images\walton_32_full_hd_smart_tv_-_we4-dh32-bx220.jpg" />
     <Content Include="Images\Xiaomi-Redmi-Note-8-Black.jpg" />
-    <Content Include="paging.html" />
     <Content Include="Scripts\angular-animate.js" />
     <Content Include="Scripts\angular-animate.min.js" />
     <Content Include="Scripts\angular-aria.js" />
@@ -243,6 +242,7 @@
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Scripts\dirPagination.js" />
     <Content Include="Scripts\errors.json" />
     <Content Include="Scripts\angular.min.js.map" />
     <Content Include="Scripts\angular-touch.min.js.map" />
