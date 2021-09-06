@@ -1,0 +1,71 @@
+﻿
+@{
+    ViewBag.Title = "ProductSetup";
+}
+
+<script src="~/Apps/JScontrollers/Setup/productSetupController.js"></script>
+<script src="~/Apps/JSservices/Setup/productSetupService.js"></script>
+
+<style>
+    .float-right {
+        float: right;
+    }
+
+    .float-left {
+        float: left;
+    }
+</style>
+<h2>ProductSetup</h2>
+
+
+<div class="row" ng-app="EcommerceBD" ng-controller="productSetupController">
+    <div class="row">
+        <div class="col-md-2">
+            <label class="float-right">Product Name :</label>
+        </div>
+        <div class="col-md-2">
+            <input id="txtProductName" class="form-control float-left" style="width:250px;" />
+        </div>
+        <div class="col-md-2">
+            <label class="float-right">Category :</label>
+        </div>
+        <div class="col-md-2">
+            <div class="ng-cloak">
+                <ui-select ng-model="obj.A.selected" theme="select2" append-to-body="true" style="min-width: 245px">
+                    <ui-select-match placeholder="Select">{{$select.selected.T_LANG2_NAME}}</ui-select-match>
+                    <ui-select-choices repeat="A in obj.categories | propsFilter: {Category_Name: $select.search}">
+                        <div ng-bind-html="A.T_LANG2_NAME | highlight: $select.search"></div>
+                    </ui-select-choices>
+                </ui-select>
+                <input type="text" id="ddlIAmbCapaCode" ng-model="obj.Category_Id" ng-bind="obj.Category_Id = obj.A.selected.Category_Id" class="hidden" />
+            </div>
+        </div>
+        <div class="col-md-2">
+            <label class="float-right">Brand :</label>
+        </div>
+        <div class="col-md-2">
+            <div class="ng-cloak">
+                <ui-select ng-model="obj.B.selected" theme="select2" append-to-body="true" style="min-width: 200px">
+                    <ui-select-match placeholder="Select">{{$select.selected.Brand_Name}}</ui-select-match>
+                    <ui-select-choices repeat="B in obj.brands | propsFilter: {Brand_Name: $select.search}">
+                        <div ng-bind-html="B.Brand_Name | highlight: $select.search"></div>
+                    </ui-select-choices>
+                </ui-select>
+                <input type="text" id="ddlIAmbCapaCode" ng-model="obj.Brand_Id" ng-bind="obj.Brand_Id = obj.B.selected.Brand_Id" class="hidden" />
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-2">
+            <input type="text" id="txtNothing" />
+        </div>
+        <div class="col-md-2">
+            <input type="text" id="txtNothing" />
+        </div>
+        <div class="col-md-2">
+            <input type="text" id="txtNothing" />
+        </div>
+    </div>
+</div>
+
+

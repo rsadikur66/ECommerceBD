@@ -1,0 +1,90 @@
+﻿
+@{
+    ViewBag.Title = "CategorySetup";
+}
+
+<script src="~/Apps/JScontrollers/Setup/categorySetupController.js"></script>
+<script src="~/Apps/JSservices/Setup/categorySetupService.js"></script>
+
+<style>
+    .margin_top {
+        margin-top: 1%;
+    }
+
+    .red {
+        background-color: #A4F5A3;
+    }
+
+    #CatTable {
+        background-color: #b581cc;
+        font-weight: bold;
+        /*color:#ffffff;*/
+    }
+
+        #CatTable th {
+            font-size: 20px;
+            text-align: center;
+            color: #45add5;
+            background-color: #808080;
+        }
+</style>
+
+<h2>CategorySetup</h2>
+
+<div class="container" ng-app="EcommerceBD" ng-controller="categorySetupController">
+    <div class="row">
+        <div class="col-md-2 hidden">
+            <label class="float-right">Category Id:</label>
+        </div>
+        <div class="col-md-2 hidden">
+            <input id="txtCategoryId" ng-model="obj.cat.CATEGORY_ID" class="form-control float-left" style="width:250px;" />
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-2">
+            <label class="float-right">English Name :</label>
+        </div>
+        <div class="col-md-2">
+            <input id="txtEnglishName" ng-model="obj.cat.T_LANG2_NAME" class="form-control float-left" style="width:250px;" required />
+        </div>
+    </div>
+    <div class="row margin_top">
+        <div class="col-md-2">
+            <label class="float-right">Local Name :</label>
+        </div>
+        <div class="col-md-2 ">
+            <input id="txtLocalName" ng-model="obj.cat.T_LANG1_NAME" class="form-control float-left" style="width:250px;" />
+        </div>
+    </div>
+    <div class="row margin_top">
+        <div class="col-md-2"></div>
+        <div class="col-md-1">
+            <input type="button" id="btnSave" class="btn btn-primary" ng-click="Save()" value="{{buttonText}}" title="Save" />
+        </div>
+        <div class="col-md-1">
+            <input type="button" id="btnSave" class="btn btn-danger" ng-click="Delete()" value="Delete" title="Delete" />
+        </div>
+        <div class="col-md-1">
+            <input type="button" id="btnReport" class="btn btn-primary" ng-click="Print()" value="Report" title="Report" />
+        </div>
+    </div>
+    <br />
+    <br />
+
+    <div>
+        <table id="CatTable" class="table table-bordered">
+            <tr>
+                <th>Category Id</th>
+                <th>Category Name Bangla</th>
+                <th>Category Name English</th>
+            </tr>
+            <tr ng-repeat="v in obj.categories" ng-class="{red: hover}" ng-mouseover="hover = true" ng-mouseleave="hover = false" ng-click="rowSelect(v)">
+                <td>{{v.CATEGORY_ID}}</td>
+                <td>{{v.T_LANG1_NAME}}</td>
+                <td>{{v.T_LANG2_NAME}}</td>
+            </tr>
+        </table>
+        <paging-control paging-size="pagingSize" noofitem="dataPerPage" total-items="totalItems" display-items="displayItems"></paging-control>
+
+    </div>
+</div>
