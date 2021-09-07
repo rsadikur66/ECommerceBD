@@ -71,7 +71,13 @@
         } else {
             var deletedata = categorySetupService.deleteCategory($scope.obj.cat.CATEGORY_ID)
             deletedata.then(function (data) {
-                alert(data);
+                if (data == "true") {
+                    getCategoriesData();
+                    alert("Data Delete Successfully");
+                } else {
+                    getCategoriesData();
+                    alert("Data not Delete");
+                }
             })
         }
     }

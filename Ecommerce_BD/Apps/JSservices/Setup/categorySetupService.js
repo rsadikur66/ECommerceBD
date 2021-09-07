@@ -6,7 +6,7 @@ app.service("categorySetupService", ["$http", function ($http) {
         GetCategories: GetCategories,
         insertData: insertData,
         updateData: updateData,
-        deleteData : deleteData 
+        deleteCategory: deleteCategory
 
     };
     return dataService;
@@ -116,14 +116,14 @@ app.service("categorySetupService", ["$http", function ($http) {
     }
     //Insert and Update Function End
 
-    function deleteData(catId) {
+    function deleteCategory(catId) {
         try {
-            var url = '/CategorySetup/DeleteData';
+            var url = '/CategorySetup/DeleteCategoryRecord';
             return $http({
                 url: url,
                 method: "POST",
-                data: JSON.stringify(catId)
-            }).then(function () {
+                params: {catId: catId }
+            }).then(function (results) {
                 return results.data;
             }).catch(function (ex) {
                 throw ex;
