@@ -65,17 +65,17 @@ app.service("categorySetupService", ["$http", function ($http) {
     }
 
     //For Save and Update Function  Start 
-    function insertData(cat) {
-        try {
-            var url = '/T74038/InsertData';//AddItem from controller T74038Controller
-            return $http.post(url, _T74038)
-                .then(function (results) {
-                    return results.data;
-                }).catch(function (e) { });
-        } catch (ex) {
-            throw ex;
-        }
-    }
+    //function insertData(cat) {
+    //    try {
+    //        var url = '/T74038/InsertData';//AddItem from controller T74038Controller
+    //        return $http.post(url, _T74038)
+    //            .then(function (results) {
+    //                return results.data;
+    //            }).catch(function (e) { });
+    //    } catch (ex) {
+    //        throw ex;
+    //    }
+    //}
     //For Save and Update Function  End 
 
     //Insert and Update Function start
@@ -119,10 +119,11 @@ app.service("categorySetupService", ["$http", function ($http) {
     function deleteCategory(catId) {
         try {
             var url = '/CategorySetup/DeleteCategoryRecord';
+            var params = { catId: catId};
             return $http({
                 url: url,
                 method: "POST",
-                params: {catId: catId }
+                data: params
             }).then(function (results) {
                 return results.data;
             }).catch(function (ex) {

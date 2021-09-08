@@ -1,4 +1,5 @@
-﻿using Ecommerce_BD_DAL.Repository.Interface.Setup;
+﻿using Ecommerce_BD_DAL.Model;
+using Ecommerce_BD_DAL.Repository.Interface.Setup;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -36,7 +37,24 @@ namespace Ecommerce_BD.Controllers.Setup
                 return Json(exc.Message, JsonRequestBehavior.AllowGet);
             }
         }
-
+        [HttpPost]
+        public ActionResult UpdateData(CategoryModel CatMod)
+        {
+            //string user = HttpContext.Session["T_EMP_CODE"].ToString();
+            var data = repository.updateData(CatMod);
+            string JSONString = string.Empty;
+            JSONString = JsonConvert.SerializeObject(data);
+            return Json(JSONString, JsonRequestBehavior.AllowGet);
+        }
+        [HttpPost]
+        public ActionResult InsertData(CategoryModel CatMod)
+        {
+            //string user = HttpContext.Session["T_EMP_CODE"].ToString();
+            var data = repository.InsertData(CatMod.T_LANG1_NAME, CatMod.T_LANG2_NAME);
+            string JSONString = string.Empty;
+            JSONString = JsonConvert.SerializeObject(data);
+            return Json(JSONString, JsonRequestBehavior.AllowGet);
+        }
         [HttpPost]
         public ActionResult DeleteCategoryRecord(int catId)
         {

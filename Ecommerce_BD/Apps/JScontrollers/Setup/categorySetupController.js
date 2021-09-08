@@ -29,7 +29,14 @@
             if ($scope.obj.cat.T_LANG2_NAME != undefined && $scope.obj.cat.T_LANG1_NAME != undefined) {
                 var insert = categorySetupService.insertData($scope.obj.cat);
                 insert.then(function (data) {
-                    alert(data);
+                    var msg = data == "true" ? "Data Insert Successfully" : "Data Not Insert";
+                    /*alert(msg);*/
+                    ()=> cuteAlert({
+                        type: "success",
+                        title: "Saved",
+                        message: msg,
+                        buttonText: "Okay"
+                    });
                     getCategoriesData();
                     clear();
                 })
@@ -40,8 +47,13 @@
             if ($scope.obj.cat.T_LANG2_NAME != undefined && $scope.obj.cat.T_LANG1_NAME != undefined) {
                 var update = categorySetupService.updateData($scope.obj.cat);
                 update.then(function (data) {
-                    alert(data);
-                    getCategoriesData();
+                    if (data == "true") {
+                        getCategoriesData();
+                        alert("Data Update Successfully");
+                    } else {
+                        getCategoriesData();
+                        alert("Data not Update");
+                    }                    
                     clear();
                 })
             } else {
