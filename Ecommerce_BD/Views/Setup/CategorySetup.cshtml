@@ -16,18 +16,18 @@
         cursor:pointer;
     }
 
-    #CatTable {
+    /*#CatTable {
         background-color: #b581cc;
-        font-weight: bold;
+        font-weight: bold;*/
         /*color:#ffffff;*/
-    }
+    /*}*/
 
-        #CatTable th {
-            font-size: 20px;
-            text-align: center;
-            color: #45add5;
-            background-color: #808080;
-        }
+    #CatTable th {
+        /*font-size: 20px;*/
+        text-align: center;
+        color: #e8c199;
+        background-color: #5a6a81;
+    }
 </style>
 
 <h2>CategorySetup</h2>
@@ -72,13 +72,15 @@
     <br />
     <br />
 
-    <div>
+    <div >
         <table id="CatTable" class="table table-bordered">
-            <tr>
-                <th>Category Id</th>
-                <th>Category Name Bangla</th>
-                <th>Category Name English</th>
-            </tr>
+            <thead class="thead-dark">
+                <tr>
+                    <th>Category Id</th>
+                    <th>Category Name Bangla</th>
+                    <th>Category Name English</th>
+                </tr>
+            </thead>
             <tr dir-paginate="v in obj.categories |filter : Search |itemsPerPage:5" ng-class="{red: hover}" ng-mouseover="hover = true" ng-mouseleave="hover = false" pagination-id="bed" ng-click="rowSelect(v)">
                 <td>{{v.CATEGORY_ID}}</td>
                 <td>{{v.T_LANG1_NAME}}</td>
