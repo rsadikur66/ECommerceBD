@@ -1,0 +1,422 @@
+﻿USE [master]
+GO
+/****** Object:  Database [Ecommerce_DB]    Script Date: 9/9/2021 6:14:14 PM ******/
+CREATE DATABASE [Ecommerce_DB]
+ CONTAINMENT = NONE
+ ON  PRIMARY 
+( NAME = N'Ecommerce_DB', FILENAME = N'C:\Program Files\Microsoft SQL Server\MSSQL12.MSSQLSERVER\MSSQL\DATA\Ecommerce_DB.mdf' , SIZE = 4096KB , MAXSIZE = UNLIMITED, FILEGROWTH = 1024KB )
+ LOG ON 
+( NAME = N'Ecommerce_DB_log', FILENAME = N'C:\Program Files\Microsoft SQL Server\MSSQL12.MSSQLSERVER\MSSQL\DATA\Ecommerce_DB_log.ldf' , SIZE = 1024KB , MAXSIZE = 2048GB , FILEGROWTH = 10%)
+GO
+ALTER DATABASE [Ecommerce_DB] SET COMPATIBILITY_LEVEL = 120
+GO
+IF (1 = FULLTEXTSERVICEPROPERTY('IsFullTextInstalled'))
+begin
+EXEC [Ecommerce_DB].[dbo].[sp_fulltext_database] @action = 'enable'
+end
+GO
+ALTER DATABASE [Ecommerce_DB] SET ANSI_NULL_DEFAULT OFF 
+GO
+ALTER DATABASE [Ecommerce_DB] SET ANSI_NULLS OFF 
+GO
+ALTER DATABASE [Ecommerce_DB] SET ANSI_PADDING OFF 
+GO
+ALTER DATABASE [Ecommerce_DB] SET ANSI_WARNINGS OFF 
+GO
+ALTER DATABASE [Ecommerce_DB] SET ARITHABORT OFF 
+GO
+ALTER DATABASE [Ecommerce_DB] SET AUTO_CLOSE OFF 
+GO
+ALTER DATABASE [Ecommerce_DB] SET AUTO_SHRINK OFF 
+GO
+ALTER DATABASE [Ecommerce_DB] SET AUTO_UPDATE_STATISTICS ON 
+GO
+ALTER DATABASE [Ecommerce_DB] SET CURSOR_CLOSE_ON_COMMIT OFF 
+GO
+ALTER DATABASE [Ecommerce_DB] SET CURSOR_DEFAULT  GLOBAL 
+GO
+ALTER DATABASE [Ecommerce_DB] SET CONCAT_NULL_YIELDS_NULL OFF 
+GO
+ALTER DATABASE [Ecommerce_DB] SET NUMERIC_ROUNDABORT OFF 
+GO
+ALTER DATABASE [Ecommerce_DB] SET QUOTED_IDENTIFIER OFF 
+GO
+ALTER DATABASE [Ecommerce_DB] SET RECURSIVE_TRIGGERS OFF 
+GO
+ALTER DATABASE [Ecommerce_DB] SET  DISABLE_BROKER 
+GO
+ALTER DATABASE [Ecommerce_DB] SET AUTO_UPDATE_STATISTICS_ASYNC OFF 
+GO
+ALTER DATABASE [Ecommerce_DB] SET DATE_CORRELATION_OPTIMIZATION OFF 
+GO
+ALTER DATABASE [Ecommerce_DB] SET TRUSTWORTHY OFF 
+GO
+ALTER DATABASE [Ecommerce_DB] SET ALLOW_SNAPSHOT_ISOLATION OFF 
+GO
+ALTER DATABASE [Ecommerce_DB] SET PARAMETERIZATION SIMPLE 
+GO
+ALTER DATABASE [Ecommerce_DB] SET READ_COMMITTED_SNAPSHOT OFF 
+GO
+ALTER DATABASE [Ecommerce_DB] SET HONOR_BROKER_PRIORITY OFF 
+GO
+ALTER DATABASE [Ecommerce_DB] SET RECOVERY FULL 
+GO
+ALTER DATABASE [Ecommerce_DB] SET  MULTI_USER 
+GO
+ALTER DATABASE [Ecommerce_DB] SET PAGE_VERIFY CHECKSUM  
+GO
+ALTER DATABASE [Ecommerce_DB] SET DB_CHAINING OFF 
+GO
+ALTER DATABASE [Ecommerce_DB] SET FILESTREAM( NON_TRANSACTED_ACCESS = OFF ) 
+GO
+ALTER DATABASE [Ecommerce_DB] SET TARGET_RECOVERY_TIME = 0 SECONDS 
+GO
+ALTER DATABASE [Ecommerce_DB] SET DELAYED_DURABILITY = DISABLED 
+GO
+EXEC sys.sp_db_vardecimal_storage_format N'Ecommerce_DB', N'ON'
+GO
+USE [Ecommerce_DB]
+GO
+/****** Object:  Table [dbo].[BRANDS]    Script Date: 9/9/2021 6:14:14 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[BRANDS](
+	[Brand_Id] [int] IDENTITY(1,1) NOT NULL,
+	[Brand_Name] [nvarchar](50) NULL,
+	[Entry_User] [nvarchar](30) NULL,
+	[Entry_Date] [nvarchar](20) NULL,
+	[Update_User] [nvarchar](30) NULL,
+	[Update_Date] [nvarchar](20) NULL,
+ CONSTRAINT [PK_Brands] PRIMARY KEY CLUSTERED 
+(
+	[Brand_Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
+/****** Object:  Table [dbo].[CATEGORIES]    Script Date: 9/9/2021 6:14:14 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[CATEGORIES](
+	[CATEGORY_ID] [int] IDENTITY(1,1) NOT NULL,
+	[T_LANG1_NAME] [nvarchar](50) NULL,
+	[T_LANG2_NAME] [nvarchar](50) NULL,
+	[created_at] [datetime] NULL,
+	[modified_at] [datetime] NULL,
+	[deleted_at] [datetime] NULL,
+ CONSTRAINT [PK_Categories] PRIMARY KEY CLUSTERED 
+(
+	[CATEGORY_ID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
+/****** Object:  Table [dbo].[discount]    Script Date: 9/9/2021 6:14:14 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+SET ANSI_PADDING ON
+GO
+CREATE TABLE [dbo].[discount](
+	[discountId] [int] NOT NULL,
+	[discountName] [varchar](100) NULL,
+	[desc] [varchar](1) NULL,
+	[active] [varchar](1) NULL,
+	[created_at] [datetime] NULL,
+	[modified_at] [datetime] NULL,
+	[deleted_at] [datetime] NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[discountId] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
+SET ANSI_PADDING OFF
+GO
+/****** Object:  Table [dbo].[FORMS]    Script Date: 9/9/2021 6:14:14 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+SET ANSI_PADDING ON
+GO
+CREATE TABLE [dbo].[FORMS](
+	[T_ENTRY_USER] [varchar](50) NULL,
+	[T_ENTRY_DATE] [date] NULL,
+	[T_UPDATE_USER] [varchar](50) NULL,
+	[T_UPDATE_DATE] [date] NULL,
+	[T_FORM_CODE] [varchar](3) NOT NULL,
+	[T_LANG1_NAME] [varchar](200) NULL,
+	[T_LANG2_NAME] [varchar](200) NULL,
+	[T_ROLE_CODE] [int] NOT NULL,
+	[T_FORM_TYPE_CODE] [int] NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[T_FORM_CODE] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
+SET ANSI_PADDING OFF
+GO
+/****** Object:  Table [dbo].[FORMS_TYPE]    Script Date: 9/9/2021 6:14:14 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+SET ANSI_PADDING ON
+GO
+CREATE TABLE [dbo].[FORMS_TYPE](
+	[T_ENTRY_TIME] [varchar](1) NULL,
+	[T_ENTRY_USER] [varchar](1) NULL,
+	[T_FORM_TYPE_CODE] [int] IDENTITY(1,1) NOT NULL,
+	[T_FORM_TYPE_NAME_ENG] [nvarchar](50) NULL,
+	[T_FORM_TYPE_NAME_LOCAL] [nvarchar](50) NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[T_FORM_TYPE_CODE] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
+SET ANSI_PADDING OFF
+GO
+/****** Object:  Table [dbo].[LABELS]    Script Date: 9/9/2021 6:14:14 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+SET ANSI_PADDING ON
+GO
+CREATE TABLE [dbo].[LABELS](
+	[Label_Id] [int] IDENTITY(1,1) NOT NULL,
+	[Label_Eng] [nvarchar](100) NULL,
+	[Label_Bang] [nvarchar](100) NULL,
+	[Label_Name] [varchar](50) NULL,
+	[Form_Name] [varchar](50) NULL,
+	[Entry_User] [varchar](10) NULL,
+	[Entry_Date] [datetime] NULL,
+	[Update_User] [varchar](50) NULL,
+	[Update_Date] [datetime] NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[Label_Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
+SET ANSI_PADDING OFF
+GO
+/****** Object:  Table [dbo].[PRODUCT_INVENTORY]    Script Date: 9/9/2021 6:14:14 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[PRODUCT_INVENTORY](
+	[Id] [int] NOT NULL,
+	[Quantity] [int] NULL,
+	[Created_at] [datetime] NULL,
+	[Modified_at] [datetime] NULL,
+	[Deleted_at] [datetime] NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
+/****** Object:  Table [dbo].[PRODUCTS]    Script Date: 9/9/2021 6:14:14 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+SET ANSI_PADDING ON
+GO
+CREATE TABLE [dbo].[PRODUCTS](
+	[Product_Id] [int] IDENTITY(1,1) NOT NULL,
+	[Product_Name] [nvarchar](150) NULL,
+	[Brand_Id] [int] NULL,
+	[Sub_Category_Id] [int] NULL,
+	[Category_Id] [int] NULL,
+	[Picture] [nvarchar](500) NULL,
+	[Price] [float] NULL,
+	[Description] [varchar](500) NULL,
+	[Inventory_Id] [int] NULL,
+	[created_at] [datetime] NULL,
+	[modified_at] [datetime] NULL,
+	[deleted_at] [datetime] NULL,
+ CONSTRAINT [PK_Products] PRIMARY KEY CLUSTERED 
+(
+	[Product_Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
+SET ANSI_PADDING OFF
+GO
+/****** Object:  Table [dbo].[ROLES]    Script Date: 9/9/2021 6:14:14 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+SET ANSI_PADDING ON
+GO
+CREATE TABLE [dbo].[ROLES](
+	[T_ENTRY_DATE] [varchar](20) NULL,
+	[T_ENTRY_USER] [varchar](50) NULL,
+	[T_UPD_DATE] [varchar](20) NULL,
+	[T_UPD_USER] [varchar](50) NULL,
+	[T_ROLE_ID] [int] IDENTITY(1,1) NOT NULL,
+	[T_ROLE_NAME] [varchar](50) NOT NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[T_ROLE_ID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
+SET ANSI_PADDING OFF
+GO
+/****** Object:  Table [dbo].[SUB_CATEGORIES]    Script Date: 9/9/2021 6:14:14 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[SUB_CATEGORIES](
+	[Sub_Category_Id] [int] IDENTITY(1,1) NOT NULL,
+	[Sub_Category_Name] [nvarchar](50) NULL,
+	[Category_Id] [int] NULL,
+ CONSTRAINT [PK_Sub_Categories] PRIMARY KEY CLUSTERED 
+(
+	[Sub_Category_Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
+/****** Object:  Table [dbo].[USERS]    Script Date: 9/9/2021 6:14:14 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+SET ANSI_PADDING ON
+GO
+CREATE TABLE [dbo].[USERS](
+	[T_ENTRY_DATE] [varchar](20) NULL,
+	[T_ENTRY_USER] [varchar](50) NULL,
+	[T_UPD_DATE] [varchar](20) NULL,
+	[T_UPD_USER] [varchar](50) NULL,
+	[T_USER_ID] [int] IDENTITY(1,1) NOT NULL,
+	[T_USER_NAME] [varchar](50) NOT NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[T_USER_ID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
+SET ANSI_PADDING OFF
+GO
+SET IDENTITY_INSERT [dbo].[BRANDS] ON 
+
+INSERT [dbo].[BRANDS] ([Brand_Id], [Brand_Name], [Entry_User], [Entry_Date], [Update_User], [Update_Date]) VALUES (1, N'Samsung', NULL, NULL, NULL, NULL)
+INSERT [dbo].[BRANDS] ([Brand_Id], [Brand_Name], [Entry_User], [Entry_Date], [Update_User], [Update_Date]) VALUES (2, N'Motorolla', NULL, NULL, NULL, NULL)
+INSERT [dbo].[BRANDS] ([Brand_Id], [Brand_Name], [Entry_User], [Entry_Date], [Update_User], [Update_Date]) VALUES (3, N'Xiomi', NULL, NULL, NULL, NULL)
+INSERT [dbo].[BRANDS] ([Brand_Id], [Brand_Name], [Entry_User], [Entry_Date], [Update_User], [Update_Date]) VALUES (4, N'Nokia', NULL, NULL, NULL, NULL)
+INSERT [dbo].[BRANDS] ([Brand_Id], [Brand_Name], [Entry_User], [Entry_Date], [Update_User], [Update_Date]) VALUES (5, N'Walton', NULL, NULL, NULL, NULL)
+INSERT [dbo].[BRANDS] ([Brand_Id], [Brand_Name], [Entry_User], [Entry_Date], [Update_User], [Update_Date]) VALUES (6, N'Lenovo', NULL, NULL, NULL, NULL)
+INSERT [dbo].[BRANDS] ([Brand_Id], [Brand_Name], [Entry_User], [Entry_Date], [Update_User], [Update_Date]) VALUES (7, N'LG', NULL, NULL, NULL, NULL)
+INSERT [dbo].[BRANDS] ([Brand_Id], [Brand_Name], [Entry_User], [Entry_Date], [Update_User], [Update_Date]) VALUES (8, N'Oppo', NULL, NULL, NULL, NULL)
+INSERT [dbo].[BRANDS] ([Brand_Id], [Brand_Name], [Entry_User], [Entry_Date], [Update_User], [Update_Date]) VALUES (9, N'Apple', NULL, NULL, NULL, NULL)
+SET IDENTITY_INSERT [dbo].[BRANDS] OFF
+SET IDENTITY_INSERT [dbo].[CATEGORIES] ON 
+
+INSERT [dbo].[CATEGORIES] ([CATEGORY_ID], [T_LANG1_NAME], [T_LANG2_NAME], [created_at], [modified_at], [deleted_at]) VALUES (1, N'Mobile Devices', N'Mobile Devices', NULL, NULL, NULL)
+INSERT [dbo].[CATEGORIES] ([CATEGORY_ID], [T_LANG1_NAME], [T_LANG2_NAME], [created_at], [modified_at], [deleted_at]) VALUES (2, N'বৈদ্যুতিন আনুষাঙ্গিক', N'Electronic Accessories', NULL, NULL, NULL)
+INSERT [dbo].[CATEGORIES] ([CATEGORY_ID], [T_LANG1_NAME], [T_LANG2_NAME], [created_at], [modified_at], [deleted_at]) VALUES (3, N'টিভি ও হোম অ্যাপ্লায়েন্সেস', N'TV & Home Appliances', NULL, NULL, NULL)
+INSERT [dbo].[CATEGORIES] ([CATEGORY_ID], [T_LANG1_NAME], [T_LANG2_NAME], [created_at], [modified_at], [deleted_at]) VALUES (4, N'স্বাস্থ্য এবং সৌন্দর্য', N'Health & Beauty', NULL, NULL, NULL)
+INSERT [dbo].[CATEGORIES] ([CATEGORY_ID], [T_LANG1_NAME], [T_LANG2_NAME], [created_at], [modified_at], [deleted_at]) VALUES (5, N'বাচ্চা এবং খেলনা', N'Babies & Toys', NULL, NULL, NULL)
+INSERT [dbo].[CATEGORIES] ([CATEGORY_ID], [T_LANG1_NAME], [T_LANG2_NAME], [created_at], [modified_at], [deleted_at]) VALUES (6, N'মুদি ও পোষা প্রাণী', N'Groceries & Pets', NULL, NULL, NULL)
+INSERT [dbo].[CATEGORIES] ([CATEGORY_ID], [T_LANG1_NAME], [T_LANG2_NAME], [created_at], [modified_at], [deleted_at]) VALUES (7, N'হোম ও লাইফস্টাইল', N'Home & Lifestyle', NULL, NULL, NULL)
+INSERT [dbo].[CATEGORIES] ([CATEGORY_ID], [T_LANG1_NAME], [T_LANG2_NAME], [created_at], [modified_at], [deleted_at]) VALUES (8, N'মহিলাদের ফ্যাশন', N'Women''s Fashion', NULL, NULL, NULL)
+INSERT [dbo].[CATEGORIES] ([CATEGORY_ID], [T_LANG1_NAME], [T_LANG2_NAME], [created_at], [modified_at], [deleted_at]) VALUES (9, N'পুরুষদের ফ্যাশন', N'Men''s Fashion', NULL, NULL, NULL)
+INSERT [dbo].[CATEGORIES] ([CATEGORY_ID], [T_LANG1_NAME], [T_LANG2_NAME], [created_at], [modified_at], [deleted_at]) VALUES (10, N'ঘড়ি এবং আনুষাঙ্গিক', N'Watches & Accessories', NULL, NULL, NULL)
+INSERT [dbo].[CATEGORIES] ([CATEGORY_ID], [T_LANG1_NAME], [T_LANG2_NAME], [created_at], [modified_at], [deleted_at]) VALUES (11, N'ক্রীড়া ও আউটডোর', N'Sports & Outdoor', NULL, NULL, NULL)
+INSERT [dbo].[CATEGORIES] ([CATEGORY_ID], [T_LANG1_NAME], [T_LANG2_NAME], [created_at], [modified_at], [deleted_at]) VALUES (12, N'মোটরবাইক এবং মোটরবাইক', N'Automotive & Motorbike', NULL, NULL, NULL)
+INSERT [dbo].[CATEGORIES] ([CATEGORY_ID], [T_LANG1_NAME], [T_LANG2_NAME], [created_at], [modified_at], [deleted_at]) VALUES (1019, N'alba', N'jasica', NULL, NULL, NULL)
+INSERT [dbo].[CATEGORIES] ([CATEGORY_ID], [T_LANG1_NAME], [T_LANG2_NAME], [created_at], [modified_at], [deleted_at]) VALUES (1020, N'backham', N'david', NULL, NULL, NULL)
+INSERT [dbo].[CATEGORIES] ([CATEGORY_ID], [T_LANG1_NAME], [T_LANG2_NAME], [created_at], [modified_at], [deleted_at]) VALUES (1021, N'Crook', N'walter', NULL, NULL, NULL)
+INSERT [dbo].[CATEGORIES] ([CATEGORY_ID], [T_LANG1_NAME], [T_LANG2_NAME], [created_at], [modified_at], [deleted_at]) VALUES (1023, N'jjj', N'', NULL, NULL, NULL)
+INSERT [dbo].[CATEGORIES] ([CATEGORY_ID], [T_LANG1_NAME], [T_LANG2_NAME], [created_at], [modified_at], [deleted_at]) VALUES (1024, N'bbbbb', N'aaa', NULL, NULL, NULL)
+INSERT [dbo].[CATEGORIES] ([CATEGORY_ID], [T_LANG1_NAME], [T_LANG2_NAME], [created_at], [modified_at], [deleted_at]) VALUES (1026, N'sad2', N'sad', NULL, NULL, NULL)
+INSERT [dbo].[CATEGORIES] ([CATEGORY_ID], [T_LANG1_NAME], [T_LANG2_NAME], [created_at], [modified_at], [deleted_at]) VALUES (1033, N'water purifier', N'water purifier', NULL, NULL, NULL)
+INSERT [dbo].[CATEGORIES] ([CATEGORY_ID], [T_LANG1_NAME], [T_LANG2_NAME], [created_at], [modified_at], [deleted_at]) VALUES (1034, N'Earphone', N'Earphone', NULL, NULL, NULL)
+INSERT [dbo].[CATEGORIES] ([CATEGORY_ID], [T_LANG1_NAME], [T_LANG2_NAME], [created_at], [modified_at], [deleted_at]) VALUES (1040, N'new data 1', N'new data', NULL, NULL, NULL)
+INSERT [dbo].[CATEGORIES] ([CATEGORY_ID], [T_LANG1_NAME], [T_LANG2_NAME], [created_at], [modified_at], [deleted_at]) VALUES (1041, N'new data 2', N'new data 2', NULL, NULL, NULL)
+INSERT [dbo].[CATEGORIES] ([CATEGORY_ID], [T_LANG1_NAME], [T_LANG2_NAME], [created_at], [modified_at], [deleted_at]) VALUES (1042, N'Drinking Water', N'data 3', NULL, NULL, NULL)
+INSERT [dbo].[CATEGORIES] ([CATEGORY_ID], [T_LANG1_NAME], [T_LANG2_NAME], [created_at], [modified_at], [deleted_at]) VALUES (1043, N'data 5', N'data 5', NULL, NULL, NULL)
+INSERT [dbo].[CATEGORIES] ([CATEGORY_ID], [T_LANG1_NAME], [T_LANG2_NAME], [created_at], [modified_at], [deleted_at]) VALUES (1044, N'dat6', N'dat 6', NULL, NULL, NULL)
+INSERT [dbo].[CATEGORIES] ([CATEGORY_ID], [T_LANG1_NAME], [T_LANG2_NAME], [created_at], [modified_at], [deleted_at]) VALUES (1045, N'kkkji', N'uuji', NULL, NULL, NULL)
+INSERT [dbo].[CATEGORIES] ([CATEGORY_ID], [T_LANG1_NAME], [T_LANG2_NAME], [created_at], [modified_at], [deleted_at]) VALUES (1046, N'data 7', N'data 7', NULL, NULL, NULL)
+INSERT [dbo].[CATEGORIES] ([CATEGORY_ID], [T_LANG1_NAME], [T_LANG2_NAME], [created_at], [modified_at], [deleted_at]) VALUES (1047, N'okokok', N'okoko', NULL, NULL, NULL)
+INSERT [dbo].[CATEGORIES] ([CATEGORY_ID], [T_LANG1_NAME], [T_LANG2_NAME], [created_at], [modified_at], [deleted_at]) VALUES (1048, N'sfdsfd', N'fdfd', NULL, NULL, NULL)
+SET IDENTITY_INSERT [dbo].[CATEGORIES] OFF
+INSERT [dbo].[FORMS] ([T_ENTRY_USER], [T_ENTRY_DATE], [T_UPDATE_USER], [T_UPDATE_DATE], [T_FORM_CODE], [T_LANG1_NAME], [T_LANG2_NAME], [T_ROLE_CODE], [T_FORM_TYPE_CODE]) VALUES (NULL, NULL, NULL, NULL, N'101', N'Category Setup', N'Category Setup', 1, 1)
+INSERT [dbo].[FORMS] ([T_ENTRY_USER], [T_ENTRY_DATE], [T_UPDATE_USER], [T_UPDATE_DATE], [T_FORM_CODE], [T_LANG1_NAME], [T_LANG2_NAME], [T_ROLE_CODE], [T_FORM_TYPE_CODE]) VALUES (NULL, NULL, NULL, NULL, N'102', N'Product Setup', N'Product Setup', 1, 1)
+SET IDENTITY_INSERT [dbo].[FORMS_TYPE] ON 
+
+INSERT [dbo].[FORMS_TYPE] ([T_ENTRY_TIME], [T_ENTRY_USER], [T_FORM_TYPE_CODE], [T_FORM_TYPE_NAME_ENG], [T_FORM_TYPE_NAME_LOCAL]) VALUES (N'', NULL, 1, N'SETUP', N'SETUP')
+INSERT [dbo].[FORMS_TYPE] ([T_ENTRY_TIME], [T_ENTRY_USER], [T_FORM_TYPE_CODE], [T_FORM_TYPE_NAME_ENG], [T_FORM_TYPE_NAME_LOCAL]) VALUES (NULL, NULL, 2, N'TRANSACTION', N'TRANSACTION')
+INSERT [dbo].[FORMS_TYPE] ([T_ENTRY_TIME], [T_ENTRY_USER], [T_FORM_TYPE_CODE], [T_FORM_TYPE_NAME_ENG], [T_FORM_TYPE_NAME_LOCAL]) VALUES (NULL, NULL, 3, N'GENERAL', N'GENERAL')
+INSERT [dbo].[FORMS_TYPE] ([T_ENTRY_TIME], [T_ENTRY_USER], [T_FORM_TYPE_CODE], [T_FORM_TYPE_NAME_ENG], [T_FORM_TYPE_NAME_LOCAL]) VALUES (NULL, NULL, 4, N'CATEGORIES', N'CATEGORIES')
+SET IDENTITY_INSERT [dbo].[FORMS_TYPE] OFF
+SET IDENTITY_INSERT [dbo].[PRODUCTS] ON 
+
+INSERT [dbo].[PRODUCTS] ([Product_Id], [Product_Name], [Brand_Id], [Sub_Category_Id], [Category_Id], [Picture], [Price], [Description], [Inventory_Id], [created_at], [modified_at], [deleted_at]) VALUES (1, N'Samsung Galaxy A50', 1, NULL, 1, N'Samsung Galaxy A50.jpg', 11000.99, N'dkjafjkladjfkla', NULL, NULL, NULL, NULL)
+INSERT [dbo].[PRODUCTS] ([Product_Id], [Product_Name], [Brand_Id], [Sub_Category_Id], [Category_Id], [Picture], [Price], [Description], [Inventory_Id], [created_at], [modified_at], [deleted_at]) VALUES (2, N'motorola-moto-g8-plus', 2, NULL, 1, N'motorola-moto-g8-plus.jpg', 15499, N'the quick brown fox', NULL, NULL, NULL, NULL)
+INSERT [dbo].[PRODUCTS] ([Product_Id], [Product_Name], [Brand_Id], [Sub_Category_Id], [Category_Id], [Picture], [Price], [Description], [Inventory_Id], [created_at], [modified_at], [deleted_at]) VALUES (3, N'Nokia-6.1-Plus', 4, NULL, 1, N'Nokia-6.1-Plus.jpg', 12099.99, N'jumps over the lazy', NULL, NULL, NULL, NULL)
+INSERT [dbo].[PRODUCTS] ([Product_Id], [Product_Name], [Brand_Id], [Sub_Category_Id], [Category_Id], [Picture], [Price], [Description], [Inventory_Id], [created_at], [modified_at], [deleted_at]) VALUES (4, N'Xiaomi-Redmi-Note-8-Black', 3, NULL, 1, N'Xiaomi-Redmi-Note-8-Black.jpg', 14999.9, N'bangladesh is beautiful', NULL, NULL, NULL, NULL)
+INSERT [dbo].[PRODUCTS] ([Product_Id], [Product_Name], [Brand_Id], [Sub_Category_Id], [Category_Id], [Picture], [Price], [Description], [Inventory_Id], [created_at], [modified_at], [deleted_at]) VALUES (5, N'walton_32_full_hd_smart_tv', 5, NULL, 3, N'walton_32_full_hd_smart_tv_-_we4-dh32-bx220.jpg', 22990, N'we are one of the most strongest people', NULL, NULL, NULL, NULL)
+SET IDENTITY_INSERT [dbo].[PRODUCTS] OFF
+SET IDENTITY_INSERT [dbo].[ROLES] ON 
+
+INSERT [dbo].[ROLES] ([T_ENTRY_DATE], [T_ENTRY_USER], [T_UPD_DATE], [T_UPD_USER], [T_ROLE_ID], [T_ROLE_NAME]) VALUES (NULL, NULL, NULL, NULL, 1, N'ADMIN')
+INSERT [dbo].[ROLES] ([T_ENTRY_DATE], [T_ENTRY_USER], [T_UPD_DATE], [T_UPD_USER], [T_ROLE_ID], [T_ROLE_NAME]) VALUES (NULL, NULL, NULL, NULL, 2, N'CUSTOMER')
+SET IDENTITY_INSERT [dbo].[ROLES] OFF
+SET IDENTITY_INSERT [dbo].[SUB_CATEGORIES] ON 
+
+INSERT [dbo].[SUB_CATEGORIES] ([Sub_Category_Id], [Sub_Category_Name], [Category_Id]) VALUES (1, N'Mobiles', 1)
+INSERT [dbo].[SUB_CATEGORIES] ([Sub_Category_Id], [Sub_Category_Name], [Category_Id]) VALUES (2, N'Tablets', 1)
+INSERT [dbo].[SUB_CATEGORIES] ([Sub_Category_Id], [Sub_Category_Name], [Category_Id]) VALUES (3, N'Laptops', 1)
+INSERT [dbo].[SUB_CATEGORIES] ([Sub_Category_Id], [Sub_Category_Name], [Category_Id]) VALUES (4, N'Desktops', 1)
+INSERT [dbo].[SUB_CATEGORIES] ([Sub_Category_Id], [Sub_Category_Name], [Category_Id]) VALUES (5, N'Gaming Consoles', 1)
+INSERT [dbo].[SUB_CATEGORIES] ([Sub_Category_Id], [Sub_Category_Name], [Category_Id]) VALUES (6, N'DSLR', 1)
+INSERT [dbo].[SUB_CATEGORIES] ([Sub_Category_Id], [Sub_Category_Name], [Category_Id]) VALUES (7, N'Camera Lenses', 1)
+INSERT [dbo].[SUB_CATEGORIES] ([Sub_Category_Id], [Sub_Category_Name], [Category_Id]) VALUES (8, N'Action/Video Cameras', 1)
+INSERT [dbo].[SUB_CATEGORIES] ([Sub_Category_Id], [Sub_Category_Name], [Category_Id]) VALUES (9, N'Security Cameras', 1)
+SET IDENTITY_INSERT [dbo].[SUB_CATEGORIES] OFF
+/****** Object:  Index [Labels_Label_Id_uindex]    Script Date: 9/9/2021 6:14:14 PM ******/
+CREATE UNIQUE NONCLUSTERED INDEX [Labels_Label_Id_uindex] ON [dbo].[LABELS]
+(
+	[Label_Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, IGNORE_DUP_KEY = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+GO
+ALTER TABLE [dbo].[PRODUCTS]  WITH CHECK ADD  CONSTRAINT [FK_Products_Sub_Categories] FOREIGN KEY([Sub_Category_Id])
+REFERENCES [dbo].[SUB_CATEGORIES] ([Sub_Category_Id])
+GO
+ALTER TABLE [dbo].[PRODUCTS] CHECK CONSTRAINT [FK_Products_Sub_Categories]
+GO
+ALTER TABLE [dbo].[SUB_CATEGORIES]  WITH CHECK ADD  CONSTRAINT [FK_Sub_Categories_Categories] FOREIGN KEY([Category_Id])
+REFERENCES [dbo].[CATEGORIES] ([CATEGORY_ID])
+GO
+ALTER TABLE [dbo].[SUB_CATEGORIES] CHECK CONSTRAINT [FK_Sub_Categories_Categories]
+GO
+USE [master]
+GO
+ALTER DATABASE [Ecommerce_DB] SET  READ_WRITE 
+GO
