@@ -73,9 +73,12 @@
         //    "width= 600, height = 600, left = 100, top = 50");
         $window.open("../CategorySetup/PrintReport?popup", "width = 600,height=600,left = 100, top = 50")
     }
+    $scope.Clear = function () {
+        clear();        
+    }
     function clear() {
-        $scope.obj.cat.T_LANG1_NAME = "";
-        $scope.obj.cat.T_LANG2_NAME = "";
+        $scope.obj.cat = {};
+        $scope.buttonText = "Save"
     }
     $scope.Delete = function () {
         if ($scope.obj.cat.CATEGORY_ID == undefined) {
