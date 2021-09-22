@@ -203,6 +203,7 @@
     <Content Include="Content\select2.png" />
     <Content Include="Content\selectize.default.css" />
     <Content Include="DB-Script\EcommerceDB.txt" />
+    <Content Include="DB-Script\today.txt" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />

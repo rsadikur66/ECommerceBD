@@ -1,0 +1,34 @@
+﻿create table T06211(
+entry_user nvarchar(50),
+entry_date date,
+upd_user nvarchar(50),
+upd_date date,
+productId int primary key identity(1,1),
+productName nvarchar(100),
+[desc] nvarchar(500),
+sku int,
+categoryId int,
+inventoryId int,
+purchasePrice decimal(10,2),
+sellPrice decimal(10,2)
+)
+
+create table T06212(
+entry_user nvarchar(50),
+entry_date date,
+upd_user nvarchar(50),
+upd_date date,
+categoryId int primary key identity(1,1),
+categoryName nvarchar(100),
+[desc] nvarchar(500)
+)
+
+create table T06213
+(
+entry_user nvarchar(50),
+entry_date date,
+upd_user nvarchar(50),
+upd_date date,
+inventoryId int,
+quantity decimal(10,2)
+)
