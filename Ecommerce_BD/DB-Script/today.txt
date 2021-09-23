@@ -1,0 +1,24 @@
+﻿
+
+SELECT getdate() as Today
+
+ALTER TABLE YourTable ADD CONSTRAINT DF_YourTable DEFAULT GETDATE() FOR YourColumn
+
+alter TABLE CATEGORIES ADD CONSTRAINT DEFAULT getdate() FOR created_at;
+
+SELECT s.*, format(created_at,'dd/MM/yyyy hh:mm tt') FROM CATEGORIES s ;
+INSERT INTO CATEGORIES (T_LANG1_NAME, T_LANG2_NAME) VALUES ('new data','newdate kdjfk');
+
+ALTER TABLE Ecommerce_DB.dbo.CATEGORIES
+  ADD CONSTRAINT CATEGORIES_created_at_default DEFAULT getdate() FOR created_at
+
+ALTER TABLE PRODUCTS
+ADD CONSTRAINT PRODUCTS_created_at_default DEFAULT GETDATE() FOR created_at;
+
+alter table CATEGORIES
+    ALTER COLUMN created_at DATETIME NOT NULL ;
+ALTER TABLE Ecommerce_DB.dbo.CATEGORIES ALTER COLUMN created_at DATETIME NOT NULL;
+
+SELECT CONVERT(VARCHAR(20),convert(time,GETDATE()),100) as req_time;
+SELECT convert(varchar(20),getdate(),100)
+
