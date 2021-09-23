@@ -1,34 +1,24 @@
-﻿create table T06211(
-entry_user nvarchar(50),
-entry_date date,
-upd_user nvarchar(50),
-upd_date date,
-productId int primary key identity(1,1),
-productName nvarchar(100),
-[desc] nvarchar(500),
-sku int,
-categoryId int,
-inventoryId int,
-purchasePrice decimal(10,2),
-sellPrice decimal(10,2)
-)
+﻿
 
-create table T06212(
-entry_user nvarchar(50),
-entry_date date,
-upd_user nvarchar(50),
-upd_date date,
-categoryId int primary key identity(1,1),
-categoryName nvarchar(100),
-[desc] nvarchar(500)
-)
+SELECT getdate() as Today
 
-create table T06213
-(
-entry_user nvarchar(50),
-entry_date date,
-upd_user nvarchar(50),
-upd_date date,
-inventoryId int,
-quantity decimal(10,2)
-)
+ALTER TABLE YourTable ADD CONSTRAINT DF_YourTable DEFAULT GETDATE() FOR YourColumn
+
+alter TABLE CATEGORIES ADD CONSTRAINT DEFAULT getdate() FOR created_at;
+
+SELECT s.*, format(created_at,'dd/MM/yyyy hh:mm tt') FROM CATEGORIES s ;
+INSERT INTO CATEGORIES (T_LANG1_NAME, T_LANG2_NAME) VALUES ('new data','newdate kdjfk');
+
+ALTER TABLE Ecommerce_DB.dbo.CATEGORIES
+  ADD CONSTRAINT CATEGORIES_created_at_default DEFAULT getdate() FOR created_at
+
+ALTER TABLE PRODUCTS
+ADD CONSTRAINT PRODUCTS_created_at_default DEFAULT GETDATE() FOR created_at;
+
+alter table CATEGORIES
+    ALTER COLUMN created_at DATETIME NOT NULL ;
+ALTER TABLE Ecommerce_DB.dbo.CATEGORIES ALTER COLUMN created_at DATETIME NOT NULL;
+
+SELECT CONVERT(VARCHAR(20),convert(time,GETDATE()),100) as req_time;
+SELECT convert(varchar(20),getdate(),100)
+
