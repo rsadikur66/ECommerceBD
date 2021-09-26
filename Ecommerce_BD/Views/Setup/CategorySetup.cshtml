@@ -11,10 +11,7 @@
         margin-top: 1%;
     }
 
-    .red {
-        background-color: #A4F5A3;
-        cursor:pointer;
-    }
+  
 
     /*#CatTable {
         background-color: #b581cc;
@@ -22,12 +19,7 @@
         /*color:#ffffff;*/
     /*}*/
 
-    #CatTable th {
-        /*font-size: 20px;*/
-        text-align: center;
-        color: #e8c199;
-        background-color: #5a6a81;
-    }
+    
 </style>
 
 <h2>CategorySetup</h2>
@@ -84,7 +76,7 @@
                     <th>Category Name English</th>
                 </tr>
             </thead>
-            <tr dir-paginate="v in obj.categories |filter : Search |itemsPerPage:5" ng-class="{red: hover}" ng-mouseover="hover = true" ng-mouseleave="hover = false" pagination-id="bed" ng-click="rowSelect(v)">
+            <tr dir-paginate="v in obj.categories |filter : Search |itemsPerPage:5" ng-class="{hoverColor: hover}" ng-mouseover="hover = true" ng-mouseleave="hover = false" pagination-id="bed" ng-click="rowSelect(v)">
                 <td>{{v.CATEGORY_ID}}</td>
                 <td>{{v.T_LANG1_NAME}}</td>
                 <td>{{v.T_LANG2_NAME}}</td>

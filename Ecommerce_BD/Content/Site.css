@@ -23,5 +23,16 @@ textarea {
     max-width: 280px;
 }
 
+/*Grid TAble design Css*/
+th {
+    /*font-size: 20px;*/
+    text-align: center;
+    color: #e8c199;
+    background-color: #5a6a81;
+}
+.hoverColor {
+    background-color: #A4F5A3;
+    cursor: pointer;
+}
 
-.
+/*Grid TAble design Css*/

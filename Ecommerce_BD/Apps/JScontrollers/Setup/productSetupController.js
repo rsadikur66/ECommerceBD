@@ -1,15 +1,24 @@
-﻿app.controller('productSetupController', ["$scope", "$window", "$location", "$filter", "$timeout", "productSetupService", function ($scope, $window, $location, $filter, $timeout, productSetupService) {
+﻿
+
+app.controller('productSetupController', ["$scope", "$window", "$location", "$filter", "$timeout", "productSetupService", function ($scope, $window, $location, $filter, $timeout, productSetupService) {
     $scope.obj = {};
     $scope.obj.ambulance = [];
     getCategoriesData();
-    getBrandsData();
+    
+    getProductListData();
     function getCategoriesData() {
         var categoriesData = productSetupService.GetCategories();
         categoriesData.then(function (data) {
             $scope.obj.categories = JSON.parse(data);
             console.log($scope.obj.categories);
         });
+    }
 
+    function getProductListData() {
+        var productsListData = productSetupService.GetProductsList();
+        productsListData.then(function (data) {
+            $scope.obj.productsList = JSON.parse(data);
+        })
     }
     function getBrandsData() {
         var brandsData = productSetupService.GetBrands();

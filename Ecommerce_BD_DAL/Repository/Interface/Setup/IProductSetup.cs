@@ -11,5 +11,6 @@ namespace Ecommerce_BD_DAL.Repository.Interface.Setup
     {
         DataTable GetCategoriesData();
         DataTable GetBrandData();
+        DataTable GetProductListData();
     }
 }

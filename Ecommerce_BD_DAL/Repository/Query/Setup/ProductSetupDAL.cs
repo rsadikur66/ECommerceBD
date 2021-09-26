@@ -16,5 +16,9 @@ namespace Ecommerce_BD_DAL.Repository.Query.Setup
         {
             return Query($@"select Brand_Id,Brand_Name from brands");
         }
+        public DataTable GetProductListData()
+        {
+            return Query($@"select p.Product_Id,p.Category_Id,p.T_LANG2_NAME ProductName,p.Price,pin.Quantity, c.T_LANG2_NAME category from products p join categories c on p.Category_Id = c.CATEGORY_ID join product_inventory pin on p.Inventory_Id = pin.Id");
+        }
     }
 }

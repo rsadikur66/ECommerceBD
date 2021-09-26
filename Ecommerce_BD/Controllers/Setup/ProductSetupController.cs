@@ -22,6 +22,15 @@ namespace Ecommerce_BD.Controllers.Setup
             return View();
         }
         [HttpGet]
+        public ActionResult GetProductsList()
+        {
+            var productListItem = repository.GetProductListData();
+            string jsonstring = string.Empty;
+            jsonstring = JsonConvert.SerializeObject(productListItem);
+            return Json(jsonstring, JsonRequestBehavior.AllowGet);
+
+        }
+        [HttpGet]
         public ActionResult GetCategories()
         {
             try

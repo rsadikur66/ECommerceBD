@@ -23,5 +23,10 @@ namespace Ecommerce_BD_DAL.Repository.Implement.Setup
             var data = _productSetupDal.GetCategoriesData();
             return data;
         }
+        public DataTable GetProductListData()
+        {
+            var data = _productSetupDal.GetProductListData();
+            return data;
+        }
     }
 }

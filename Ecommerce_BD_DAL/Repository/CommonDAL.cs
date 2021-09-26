@@ -12,7 +12,6 @@ namespace Ecommerce_BD_DAL.Repository
     {
         private SqlTransaction sqlTransaction;
         readonly SqlConnection sqlConnection = new SqlConnection(ConfigurationManager.ConnectionStrings["SqlCon"].ConnectionString);
-
         public void BeginTransaction()
         {
             if (sqlConnection.State != ConnectionState.Open)
@@ -21,7 +20,6 @@ namespace Ecommerce_BD_DAL.Repository
                 sqlTransaction = sqlConnection.BeginTransaction();
             }
         }
-
         public void CommitTransaction()
         {
             sqlTransaction.Commit();

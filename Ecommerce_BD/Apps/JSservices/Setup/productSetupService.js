@@ -3,11 +3,28 @@
         //menudata: MenuData,
         //UserLogout: UserLogout,
         GetCategories: GetCategories,
-        GetBrands: GetBrands
+        GetBrands: GetBrands,
+        GetProductsList: GetProductsList
 
     };
     return dataService;
+    function GetProductsList() {
+        try {
+            var url = "/ProductSetup/GetProductsList";
+            var params = {};
+            return $http({
+                url: url, method:
+                    "GET",
+                data: params
+            }).then(function (results) {
+                return results.data;
+            }).catch(function (ex) {
+                throw ex;
+            })
+        } catch (ex) {
 
+        }
+    }
     function LangName() {
         try {
             var url = vrtlDirr + 'LangName';

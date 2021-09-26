@@ -15,59 +15,35 @@
         float: left;
     }
 </style>
-<h2>ProductSetup</h2>
-<div>
-    <button class="btn btn-primary">Add New</button>
-</div>
 
-<div class="row" ng-app="EcommerceBD" ng-controller="productSetupController">
-    <div class="row">
-        <div class="col-md-2">
-            <label class="float-right">Product Name :</label>
-        </div>
-        <div class="col-md-2">
-            <input id="txtProductName" class="form-control float-left" style="width:250px;" />
-        </div>
-        <div class="col-md-2">
-            <label class="float-right">Category :</label>
-        </div>
-        <div class="col-md-2">
-            <div class="ng-cloak">
-                <ui-select ng-model="obj.A.selected" theme="select2" append-to-body="true" style="min-width: 245px">
-                    <ui-select-match placeholder="Select">{{$select.selected.T_LANG2_NAME}}</ui-select-match>
-                    <ui-select-choices repeat="A in obj.categories | propsFilter: {Category_Name: $select.search}">
-                        <div ng-bind-html="A.T_LANG2_NAME | highlight: $select.search"></div>
-                    </ui-select-choices>
-                </ui-select>
-                <input type="text" id="ddlIAmbCapaCode" ng-model="obj.Category_Id" ng-bind="obj.Category_Id = obj.A.selected.Category_Id" class="hidden" />
-            </div>
-        </div>
-        <div class="col-md-2">
-            <label class="float-right">Brand :</label>
-        </div>
-        <div class="col-md-2">
-            <div class="ng-cloak">
-                <ui-select ng-model="obj.B.selected" theme="select2" append-to-body="true" style="min-width: 200px">
-                    <ui-select-match placeholder="Select">{{$select.selected.Brand_Name}}</ui-select-match>
-                    <ui-select-choices repeat="B in obj.brands | propsFilter: {Brand_Name: $select.search}">
-                        <div ng-bind-html="B.Brand_Name | highlight: $select.search"></div>
-                    </ui-select-choices>
-                </ui-select>
-                <input type="text" id="ddlIAmbCapaCode" ng-model="obj.Brand_Id" ng-bind="obj.Brand_Id = obj.B.selected.Brand_Id" class="hidden" />
-            </div>
-        </div>
+<div class="container" ng-app="EcommerceBD" ng-controller="productSetupController">   
+
+    <div>
+        <table id="ProductTable" class="table table-bordered">
+            <thead class="thead-dark">
+                <tr>
+                    <th>Product Id</th>
+                    <th>Name English</th>
+                    <th>Price</th>
+                    <th>Quantity</th>
+                    <th>Category</th>
+                </tr>
+            </thead>
+            <tr dir-paginate="v in obj.productsList |filter : Search |itemsPerPage:5" ng-class="{hoverColor: hover}" ng-mouseover="hover = true" ng-mouseleave="hover = false" pagination-id="bed" ng-click="rowSelect(v)">
+                <td>{{v.Product_Id}}</td>
+                <td>{{v.ProductName}}</td>
+                <td>{{v.Price}}</td>
+                <td>{{v.Quantity}}</td>
+                <td>{{v.category}}</td>
+            </tr>
+        </table>
+        <dir-pagination-controls pagination-id="bed" max-size="5"
+                                 direction-links="true"
+                                 boundary-links="true">
+        </dir-pagination-controls>
+
     </div>
-    <div class="row">
-        <div class="col-md-2">
-            <input type="text" id="txtNothing" />
-        </div>
-        <div class="col-md-2">
-            <input type="text" id="txtNothing" />
-        </div>
-        <div class="col-md-2">
-            <input type="text" id="txtNothing" />
-        </div>
-    </div>
+
 </div>
 
 
