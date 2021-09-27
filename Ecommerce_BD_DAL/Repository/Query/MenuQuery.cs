@@ -14,7 +14,7 @@ namespace Ecommerce_BD_DAL.Repository.Query
         }
         public DataTable GetMenuData()
         {
-            return Query($"SELECT CATEGORY_ID,T_LANG2_NAME FROM CATEGORIES");
+            return Query($"select f.T_FORM_CODE,f.T_LANG2_NAME form_name,f.T_FORM_TYPE_CODE,ft.T_FORM_TYPE_NAME_ENG formtype_name From FORMS f inner join FORMS_TYPE ft on f.T_FORM_TYPE_CODE = ft.T_FORM_TYPE_CODE");
         }
 
         public DataTable GetHomeData()
