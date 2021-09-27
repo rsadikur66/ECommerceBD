@@ -202,6 +202,7 @@
     <Content Include="Content\select2.css" />
     <Content Include="Content\select2.png" />
     <Content Include="Content\selectize.default.css" />
+    <Content Include="DB-Script\27sepDatabase.sql" />
     <Content Include="DB-Script\EcommerceDB.txt" />
     <Content Include="DB-Script\today.txt" />
     <Content Include="favicon.ico" />
