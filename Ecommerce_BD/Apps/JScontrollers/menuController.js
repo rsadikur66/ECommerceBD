@@ -1,4 +1,4 @@
-﻿app.controller('menuController', ["$scope", "$window", "$location", "$filter", "$timeout", "menuService", function ($scope, $window, $location, $filter, $timeout, menuService) {
+﻿app.controller('menuController', ["$scope", "$window", "$location", "$filter", "$timeout", "menuService",  function ($scope, $window, $location, $filter, $timeout, menuService) {
     $scope.name = "DokanBD";
     $scope.obj = {};
     $scope.obj.formsList = {};
@@ -14,6 +14,8 @@
     }
 }
 ]);
+
+
 app.filter('propsFilter', function () {
     return function (items, props) {
         var out = [];

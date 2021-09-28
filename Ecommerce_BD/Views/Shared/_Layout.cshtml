@@ -74,12 +74,12 @@
                 @*<h3>{{name}}</h3>*@
                 <a href="../Home/HomePage" class="active webtitle">{{name}}</a>
             </div>
-            <ul class="list-unstyled components">
-                <li>
-                    <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">{{Menuheader}}</a>
-                    <ul class="collapse list-unstyled" id="pageSubmenu">
+            <!--<ul class="list-unstyled components">
+                <li>-->
+                    @*<a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">{{Menuheader}}</a>*@
+                    <!--<ul class="collapse list-unstyled" id="pageSubmenu">
                         <li ng-repeat="item in obj.formsList">
-                            <a href="../Setup/ProductSetup">{{item.form_name}}</a>
+                            <a href="../{{Menuheader}}/{{item.linktext}}">{{item.form_name}}</a>
                         </li>
                                              
                     </ul>
@@ -88,8 +88,12 @@
                     <a href="https://rsadikur66.github.io/Web-Resume/">Portfolio</a>
                 </li>
                 
+            </ul>-->
+            <ul>
+                <li ng-repeat="item in obj.formsList">
+                    <a href="../{{Menuheader}}/{{item.linktext}}">{{item.form_name}}</a>
+                </li>
             </ul>
-            
         </nav>
         <!-- Page Content  -->
         <div id="content">
