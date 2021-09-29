@@ -70,8 +70,12 @@
                         </div>
                         <div class="form-group">
                             <label for="exampleInputFile">File input</label>
-                            <input type="file" class="form-control" id="exampleInputFile" file-model = "myFile">
-                            <div><button ng-click="uploadFile()">upload me</button></div>
+                            <input type="file" multiple="multiple" ngf-select="UploadFiles($files)" />
+                            <hr />
+                            Files:
+                            <ul><li ng-repeat="file in SelectedFiles">{{file.name}}</li></ul>
+                            <div id="dvProgress" class="progress" ng-show="Progress >= 0">
+                            </div>
                         </div>
                         <div class="form-group">
                             <label for="exampleInputFile">Category</label>

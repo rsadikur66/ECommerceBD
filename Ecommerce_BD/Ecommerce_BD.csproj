@@ -202,7 +202,6 @@
     <Content Include="Content\select2.css" />
     <Content Include="Content\select2.png" />
     <Content Include="Content\selectize.default.css" />
-    <Content Include="DB-Script\27sepDatabase.sql" />
     <Content Include="DB-Script\EcommerceDB.txt" />
     <Content Include="DB-Script\today.txt" />
     <Content Include="favicon.ico" />
@@ -215,6 +214,8 @@
     <Content Include="Images\select2.png" />
     <Content Include="Images\walton_32_full_hd_smart_tv_-_we4-dh32-bx220.jpg" />
     <Content Include="Images\Xiaomi-Redmi-Note-8-Black.jpg" />
+    <Content Include="PicUpload\172143619_3057177734605355_128087238689060000_n.jpg" />
+    <Content Include="PicUpload\received_264252285130208.jpeg" />
     <Content Include="Scripts\angular-animate.js" />
     <Content Include="Scripts\angular-animate.min.js" />
     <Content Include="Scripts\angular-aria.js" />
@@ -1101,8 +1102,9 @@
   </Target>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
        Other similar extension points exist, see Microsoft.Common.targets.
-  <Target Name="BeforeBuild">
-  </Target>
+ 
   <Target Name="AfterBuild">
   </Target> -->
+  <Target Name="BeforeBuild">
+  </Target>
 </Project>

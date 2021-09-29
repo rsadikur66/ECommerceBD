@@ -1,45 +1,8 @@
-﻿app.directive('fileModel', ['$parse', function ($parse) {
-    return {
-        restrict: 'A',
-        link: function (scope, element, attrs) {
-            var model = $parse(attrs.fileModel);
-            var modelSetter = model.assign;
-
-            element.bind('change', function () {
-                scope.$apply(function () {
-                    modelSetter(scope, element[0].files[0]);
-                });
-            });
-        }
-    };
-}]);
-app.service('fileUpload', ['$https:', function ($https) {
-    debugger;
-    this.uploadFileToUrl = function (file, uploadUrl) {
-        var fd = new FormData();
-        fd.append('file', file);
-
-        $https.post(uploadUrl, fd, {
-            transformRequest: angular.identity,
-            headers: { 'Content-Type': undefined }
-        })
-            .success(function () {
-            })
-            .error(function () {
-            });
-    }
-}]);
-app.controller('productSetupController', ["$scope", "$window", "$location", "$filter", "$timeout", "productSetupService", "categorySetupService", 'fileUpload', function ($scope, $window, $location, $filter, $timeout, productSetupService, categorySetupService, fileUpload) {
+﻿
+app.controller('productSetupController', ["$scope", "$window", "$location", "$filter", "$timeout", "productSetupService", "categorySetupService","Upload", function ($scope, $window, $location, $filter, $timeout, productSetupService, categorySetupService, Upload) {
     $scope.obj = {};
     $scope.obj.ambulance = [];
-    getCategoriesData();
-    $scope.uploadFile = function () {
-        var file = $scope.myFile;
-        console.log('file is ');
-        console.dir(file);
-        var uploadUrl = "/fileUpload";
-        fileUpload.uploadFileToUrl(file, uploadUrl);
-    };
+    getCategoriesData();   
     getProductListData();
     function getCategoriesData() {
         var categoriesData = categorySetupService.GetCategories();
@@ -48,22 +11,38 @@ app.controller('productSetupController', ["$scope", "$window", "$location", "$fi
             console.log($scope.obj.categories);
         });
     }
-
     function getProductListData() {
         var productsListData = productSetupService.GetProductsList();
         productsListData.then(function (data) {
             $scope.obj.productsList = JSON.parse(data);
         })
     }
-    function getBrandsData() {
-        var brandsData = productSetupService.GetBrands();
-        brandsData.then(function (data) {
-            $scope.obj.brands = JSON.parse(data);
-            console.log($scope.obj.brands);
-        });
 
-    }
-
+    //Upload
+    $scope.UploadFiles = function (files) {
+        $scope.SelectedFiles = files;
+        if ($scope.SelectedFiles && $scope.SelectedFiles.length) {
+            Upload.upload({
+                url: '/ProductSetup/PicUpload/',
+                data: {
+                    files: $scope.SelectedFiles
+                }
+            }).then(function (response) {
+                $timeout(function () {
+                    $scope.Result = response.data;
+                });
+            }, function (response) {
+                if (response.status > 0) {
+                    var errorMsg = response.status + ': ' + response.data;
+                    alert(errorMsg);
+                }
+            }, function (evt) {
+                var element = angular.element(document.querySelector('#dvProgress'));
+                $scope.Progress = Math.min(100, parseInt(100.0 * evt.loaded / evt.total));
+                element.html('<div style="width: ' + $scope.Progress + '%">' + $scope.Progress + '%</div>');
+            });
+        }
+    };
 }
 ]);
 

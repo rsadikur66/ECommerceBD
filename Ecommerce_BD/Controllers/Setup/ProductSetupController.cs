@@ -2,6 +2,7 @@
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -62,6 +63,22 @@ namespace Ecommerce_BD.Controllers.Setup
             }
         }
 
-        
+        [HttpPost]
+        public ContentResult PicUpload()
+        {
+            string path = Server.MapPath("~/PicUpload/");
+            if (!Directory.Exists(path))
+            {
+                Directory.CreateDirectory(path);
+            }
+
+            foreach (string key in Request.Files)
+            {
+                HttpPostedFileBase postedFile = Request.Files[key];
+                postedFile.SaveAs(path + postedFile.FileName);
+            }
+
+            return Content("Success");
+        }
     }
 }
