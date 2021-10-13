@@ -2,7 +2,6 @@
 @{
     ViewBag.Title = "CategorySetup";
 }
-
 <script src="~/Apps/JScontrollers/Setup/categorySetupController.js"></script>
 <script src="~/Apps/JSservices/Setup/categorySetupService.js"></script>
 <script src="cute-alert.js"></script>
@@ -10,73 +9,21 @@
     .margin_top {
         margin-top: 1%;
     }
-
-  
-
-    /*#CatTable {
-        background-color: #b581cc;
-        font-weight: bold;*/
-        /*color:#ffffff;*/
-    /*}*/
-
-    
 </style>
-
-<h2>CategorySetup</h2>
-
 <div class="container" ng-app="EcommerceBD" ng-controller="categorySetupController">
-    <div class="row">
-        <div class="col-md-2 hidden">
-            <label class="float-right">Category Id:</label>
-        </div>
-        <div class="col-md-2 hidden">
-            <input id="txtCategoryId" ng-model="obj.cat.CATEGORY_ID" class="form-control float-left" style="width:250px;" />
-        </div>
+    <div>
+        <button class="btn btn-link btn-lg" style="float:right;" data-toggle="modal" data-target="#myCategoryModal">Add New &nbsp;<span class="glyphicon glyphicon-plus"></span></button>
     </div>
-    <div class="row">
-        <div class="col-md-2">
-            <label class="float-right">English Name :</label>
-        </div>
-        <div class="col-md-2">
-            <input id="txtEnglishName" ng-model="obj.cat.T_LANG2_NAME" class="form-control float-left" style="width:250px;" required />
-        </div>
-    </div>
-    <div class="row margin_top">
-        <div class="col-md-2">
-            <label class="float-right">Local Name :</label>
-        </div>
-        <div class="col-md-2 ">
-            <input id="txtLocalName" ng-model="obj.cat.T_LANG1_NAME" class="form-control float-left" style="width:250px;" />
-        </div>
-    </div>
-    <div class="row margin_top">
-        <div class="col-md-2"></div>
-        <div class="col-md-1">
-            <input type="button" id="btnSave" class="btn btn-primary" ng-click="Save()" value="{{buttonText}}" title="Save" />
-        </div>
-        <div class="col-md-1">
-            <input type="button" id="btnSave" class="btn btn-danger" ng-click="Delete()" value="Delete" title="Delete" />
-        </div>
-        <div class="col-md-1">
-            <input type="button" id="btnReport" class="btn btn-info" ng-click="Print()" value="Report" title="Report" />
-        </div>
-        <div class="col-md-1">
-            <input type="button" id="btnClear" class="btn btn-default" ng-click="Clear()" value="Clear" title="Clear" />
-        </div>
-    </div>
-    <br />
-    <br />
-
-    <div >
+    <div>
         <table id="CatTable" class="table table-bordered">
             <thead class="thead-dark">
                 <tr>
-                    <th>Category Id</th>
-                    <th>Category Name Bangla</th>
-                    <th>Category Name English</th>
+                    <th>Id</th>
+                    <th>Bangla</th>
+                    <th>English</th>
                 </tr>
             </thead>
-            <tr dir-paginate="v in obj.categories |filter : Search |itemsPerPage:5" ng-class="{hoverColor: hover}" ng-mouseover="hover = true" ng-mouseleave="hover = false" pagination-id="bed" ng-click="rowSelect(v)">
+            <tr data-toggle="modal" data-target="#myCategoryModal" dir-paginate="v in obj.categories |filter : Search |itemsPerPage:10" ng-class="{hoverColor: hover}" ng-mouseover="hover = true" ng-mouseleave="hover = false" pagination-id="bed" ng-click="rowSelect(v)">
                 <td>{{v.CATEGORY_ID}}</td>
                 <td>{{v.T_LANG1_NAME}}</td>
                 <td>{{v.T_LANG2_NAME}}</td>
@@ -86,6 +33,43 @@
                                  direction-links="true"
                                  boundary-links="true">
         </dir-pagination-controls>
-
     </div>
+
+    @*modal section design*@
+    <div class="modal fade" id="myCategoryModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">Add Category</h4>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="form-group" hidden>
+                            <label class="float-right">Category Id:</label>
+                            <input id="txtCategoryId" ng-model="obj.cat.CATEGORY_ID" class="form-control float-left" style="width:250px;" />
+                        </div>
+                        <div class="form-group">
+                            <label class="float-right">English Name :</label>
+                            <input id="txtEnglishName" ng-model="obj.cat.T_LANG2_NAME" class="form-control float-left" style="width:250px;" required />
+                        </div>
+                        <div class="form-group">
+                            <label class="float-right">Local Name :</label>
+                            <input id="txtLocalName" ng-model="obj.cat.T_LANG1_NAME" class="form-control float-left" style="width:250px;" />                            
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <input type="button" id="btnSave" data-dismiss="modal" class="btn btn-primary" ng-click="Save()" value="{{buttonText}}" title="Save" />
+                    <input type="button" id="btnClear" class="btn btn-default" ng-click="Clear()" value="Clear" title="Clear" />
+                   
+                    <button id="btnDelete" class="btn btn-danger" data-dismiss="modal" ng-click="Delete()" title="Delete"><i class="glyphicon glyphicon-trash"></i></button>
+                    <input type="button" id="btnReport" class="btn btn-info" ng-click="Print()" value="Report" title="Report" />
+                </div>
+            </div>
+        </div>
+    </div>
+
+    @*modal section design*@
 </div>

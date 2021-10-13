@@ -48,7 +48,7 @@
                 var update = categorySetupService.updateData($scope.obj.cat);
                 update.then(function (data) {
                     if (data == "true") {
-                        getCategoriesData();
+                        getCategoriesData();                        
                         alert("Data Update Successfully");
                     } else {
                         getCategoriesData();
@@ -63,10 +63,16 @@
 
     };
     $scope.rowSelect = function (data) {
+        //$('#myModal').modal()                      // initialized with defaults
+        //$('#myModal').modal({ keyboard: false })   // initialized with no keyboard
+       
         $scope.obj.cat.CATEGORY_ID = data.CATEGORY_ID;
         $scope.obj.cat.T_LANG2_NAME = data.T_LANG2_NAME;
         $scope.obj.cat.T_LANG1_NAME = data.T_LANG1_NAME;
         $scope.buttonText = "Update";
+        //$('#myCategoryModal').modal('toggle');
+        //$('#myCategoryModal').modal('show');
+       /* $("#myCategoryModal").modal();*/
     };
     $scope.Print = function () {
         //$window.open("../Q74001/R74001ReportWaittingAmbulance? popup",
