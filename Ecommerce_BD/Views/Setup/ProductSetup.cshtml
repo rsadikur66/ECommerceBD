@@ -2,6 +2,9 @@
 @{
     ViewBag.Title = "ProductSetup";
 }
+<!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">-->
+<!-- Jquery CDN JS -->
+<!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>-->
 <script src="~/Apps/JScontrollers/Setup/productSetupController.js"></script>
 <script src="~/Apps/JSservices/Setup/productSetupService.js"></script>
 <script src="~/Apps/JSservices/Setup/categorySetupService.js"></script>
@@ -9,9 +12,15 @@
     .float-right {
         float: right;
     }
+
     .float-left {
         float: left;
     }
+
+    .gallery img {
+        max-width: 200px;
+    }
+    
 </style>
 <div class="container" ng-app="EcommerceBD" ng-controller="productSetupController">
     <div>
@@ -60,12 +69,20 @@
                             <div><textarea class="form-control" rows="3" placeholder="Description" id="txtDescription"></textarea></div>
                         </div>
                         <div class="form-group">
-                            <label for="exampleInputFile">File input</label>
-                            <input type="file" multiple="multiple" ngf-select="UploadFiles($files)" />
-                            <hr />
-                            Files:
-                            <ul><li ng-repeat="file in SelectedFiles">{{file.name}}</li></ul>
-                            <div id="dvProgress" class="progress" ng-show="Progress >= 0">
+                            @*<label for="exampleInputFile">File input</label>
+                                <input type="file" multiple="multiple" ngf-select="UploadFiles($files)" />
+                                <hr />
+                                Files:
+                                <ul><li ng-repeat="file in SelectedFiles">{{file.name}}</li></ul>
+                                <div id="imagePreview"></div>
+                                <div id="dvProgress" class="progress" ng-show="Progress >= 0">
+                                </div>*@
+
+                            @*2nd type trying*@
+
+                            <input type="file" multiple id="gallery-photo-add">
+                            <div class="col-md-12 gallery" >
+
                             </div>
                         </div>
                         <div class="form-group">
@@ -86,9 +103,9 @@
                                 <div class="col-md-5"><input type="number" class="form-control" id="txtPrice" placeholder="Price"></div>
                                 <div class="col-md-2"><label for="txtPrice">Quantity</label></div>
                                 <div class="col-md-4"><input type="number" class="form-control" id="txtPrice" placeholder="Quantity"></div>
-                            </div>                            
+                            </div>
                         </div>
-                        
+
                         <button type="submit" class="btn btn-default">Submit</button>
                     </form>
                 </div>
