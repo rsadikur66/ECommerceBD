@@ -36,3 +36,8 @@ th {
 }
 
 /*Grid TAble design Css*/
+
+.modal-header {
+    background: darkolivegreen;
+    color: #ffb962;
+}
