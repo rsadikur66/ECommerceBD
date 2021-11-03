@@ -22,11 +22,14 @@
     }
 
     #close {
-        position: absolute;
-        top: 0px;
-        left: 350px;
-        font-size: 32px;
-        cursor: pointer
+       /* position: absolute;
+        top: 44%;
+        left: 50%;
+        font-size: 20px;*/
+        cursor: pointer;
+        border: 2px solid white;
+        border-radius: 50%;
+        color: #eb1010;
     }
 </style>
 <div class="container" ng-app="EcommerceBD" ng-controller="productSetupController">
@@ -77,10 +80,13 @@
                         </div>
                         <div class="form-group">
                             <label for="exampleInputFile">File input</label>
-                            <input type="file" multiple file-upload /> {{files.length}}
-                            <div ng-repeat="step in files">
-                                <img style="max-width:300px;margin:5px;" id="image1" ng-src="{{step.src}}" /><span id="close" ng-click="hide()">X</span>
+                            <input type="file" multiple file-upload />
+                            <div class="row">
+                                <div class="col-lg-4 col-md-4 col-sm-4" ng-repeat="step in files">
+                                    <img style="max-width:100px;margin:5px;" id="image{{$index}}" ng-src="{{step.src}}" /><span id="close" ng-click="hide($index)">X</span>
+                                </div>
                             </div>
+                            
 
                             @*2nd type trying*@
 
