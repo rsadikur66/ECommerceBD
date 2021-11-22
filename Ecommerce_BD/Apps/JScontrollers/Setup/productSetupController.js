@@ -19,7 +19,15 @@ app.controller('productSetupController', ["$scope", "$window", "$location", "$fi
             $scope.obj.productsList = JSON.parse(data);
         })
     }
+    function ddd() {
+        var productsListData = productSetupService.GetProductsList();
+        productsListData.then(function (data) {
+            $scope.obj.productsList = JSON.parse(data);
+        })
+    }
     //3rd try
+    //3rd try
+    
     $scope.hide = function () {
         document.getElementById("image1").style.display = "none";
         document.getElementById("close").style.display = "none";
