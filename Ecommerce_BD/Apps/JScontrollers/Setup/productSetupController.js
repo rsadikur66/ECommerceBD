@@ -13,10 +13,55 @@ app.controller('productSetupController', ["$scope", "$window", "$location", "$fi
             console.log($scope.obj.categories);
         });
     }
-    $scope.hide = function (index) {
-        if (index > -1) {
-            console.log($scope.files.splice(index, 1));
+    function getProductListData() {
+        var productsListData = productSetupService.GetProductsList();
+        productsListData.then(function (data) {
+            $scope.obj.productsList = JSON.parse(data);
+        })
+    }
+    //3rd try
+    $scope.hide = function () {
+        document.getElementById("image1").style.display = "none";
+        document.getElementById("close").style.display = "none";
+    }
+
+    $(function () {
+        // Multiple images preview in browser
+        var imagesPreview = function (input, placeToInsertImagePreview) {
+            if (input.files) {
+                var filesAmount = input.files.length;
+                for (i = 0; i < filesAmount; i++) {
+                    var reader = new FileReader();
+                    reader.onload = function (event) {
+                        debugger;
+                        $($.parseHTML('<img>')).attr('src', event.target.result).appendTo(placeToInsertImagePreview);
+                    }
+                    reader.readAsDataURL(input.files[i]);
+                }
+            }
+        };
+
+        $('#gallery-photo-add').on('change', function () {
+            imagesPreview(this, 'div.gallery');
+        });
+    });
+
+
+
+    ///3rd try
+    $scope.preview_image = function (files) {
+        for (var i = 0; i < files.length; i++) {
+            $scope.indx = i;
+            var reader = new FileReader();
+            reader.onload = function () {
+                var output = document.getElementById('output_image');
+                $($.parseHTML('<img>')).attr('src', reader.result).appendTo(output);
+               // output.src = reader.result;
+            }
+
+            reader.readAsDataURL(files[i]);
         }
+        
     }
     $scope.$on("fileSelected", function (event, args) {
         var item = args;
