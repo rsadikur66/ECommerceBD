@@ -1,10 +1,10 @@
 ﻿/*const { forEach } = require("angular");*/
 
-app.controller('productSetupController', ["$scope", "$window", "$location", "$filter", "$timeout", "productSetupService", "categorySetupService","Upload", function ($scope, $window, $location, $filter, $timeout, productSetupService, categorySetupService, Upload) {
+app.controller('productSetupController', ["$scope", "$window", "$location", "$filter", "$timeout", "productSetupService", "categorySetupService", "Upload", function ($scope, $window, $location, $filter, $timeout, productSetupService, categorySetupService, Upload) {
     $scope.obj = {};
     $scope.obj.ambulance = [];
     $scope.files = [];
-    getCategoriesData();   
+    getCategoriesData();
     getProductListData();
     function getCategoriesData() {
         var categoriesData = categorySetupService.GetCategories();
@@ -13,20 +13,10 @@ app.controller('productSetupController', ["$scope", "$window", "$location", "$fi
             console.log($scope.obj.categories);
         });
     }
-    function getProductListData() {
-        var productsListData = productSetupService.GetProductsList();
-        productsListData.then(function (data) {
-            $scope.obj.productsList = JSON.parse(data);
-        })
-    }
-    //3rd try
     $scope.hide = function (index) {
         if (index > -1) {
             console.log($scope.files.splice(index, 1));
         }
-        
-        /*document.getElementById("image"+index).style.display = "none";*/
-        //document.getElementById("close").style.display = "none";
     }
     $scope.$on("fileSelected", function (event, args) {
         var item = args;
@@ -42,8 +32,18 @@ app.controller('productSetupController', ["$scope", "$window", "$location", "$fi
         if (item.file) {
             reader.readAsDataURL(item.file);
         }
-        //alert('function call.....');
-    });   
+    });
+    function getProductListData() {
+        var productsListData = productSetupService.GetProductsList();
+        productsListData.then(function (data) {
+            $scope.obj.productsList = JSON.parse(data);
+        })
+    }
+
+    $scope.ProductSave = function () {
+
+        alert('Save button works.');
+    }
 }
 ]);
 

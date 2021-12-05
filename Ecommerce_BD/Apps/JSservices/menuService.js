@@ -1,29 +1,11 @@
 ﻿app.service("menuService", ["$http", function ($http) {
     var dataService = {
         //menudata: MenuData,
-        //UserLogout: UserLogout,
+        GetLabelData: GetLabelData,
         GetMenuData: GetMenuData
 
     };
     return dataService;
-
-    function LangName() {
-        try {
-            var url = vrtlDirr + 'LangName';
-            var params = {};
-            return $http({
-                url: url,
-                method: "POST",
-                data: params
-            }).then(function (results) {
-                return results.data;
-            }).catch(function (ex) {
-                throw ex;
-            });
-        } catch (ex) {
-            throw ex;
-        }
-    }
 
     function GetMenuData() {
         try {
@@ -41,6 +23,24 @@
         } catch (ex) {
             throw ex;
         }
-    }
+    }//
+
+    function GetLabelData(formCode) {
+        try {
+            var url = "/Menu/GetLabelData";
+            var params = { formCode: formCode };
+            return $http({
+                url: url,
+                method: "POST",
+                data: params
+            }).then(function (results) {
+                return results.data;
+            }).catch(function (ex) {
+                throw ex;
+            });
+        } catch (ex) {
+            throw ex;
+        }
+    }//
 
 }]);

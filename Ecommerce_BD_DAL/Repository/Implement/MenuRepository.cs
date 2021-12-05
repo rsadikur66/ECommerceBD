@@ -35,5 +35,11 @@ namespace Ecommerce_BD_DAL.Repository.Implement
             var data = obj.GetHomeData();
             return data;
         }
+          public DataTable GetLabelData(string formCode)
+        {
+            var data = obj.GetLabelData(formCode);
+            return data;
+        }
+
     }
 }

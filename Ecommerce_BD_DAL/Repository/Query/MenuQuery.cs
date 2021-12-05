@@ -16,6 +16,10 @@ namespace Ecommerce_BD_DAL.Repository.Query
         {
             return Query($"select f.T_FORM_CODE,f.T_LANG2_NAME form_name,f.T_FORM_TYPE_CODE,ft.T_FORM_TYPE_NAME_ENG formtype_name,(replace(f.T_LANG2_NAME, ' ', '')) linktext From FORMS f inner join FORMS_TYPE ft on f.T_FORM_TYPE_CODE = ft.T_FORM_TYPE_CODE");
         }
+        public DataTable GetLabelData(string formCode)
+        {
+            return Query($"SELECT * FROM LABELS WHERE Form_Code = '{formCode}'");
+        }
 
         public DataTable GetHomeData()
         {

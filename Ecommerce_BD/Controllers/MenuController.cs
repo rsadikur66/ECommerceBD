@@ -37,5 +37,22 @@ namespace Ecommerce_BD.Controllers
                 return Json(exc.Message, JsonRequestBehavior.AllowGet);
             }
         }
+        [HttpPost]
+        public ActionResult GetLabelData(string formCode)
+        {
+            try
+            {
+                var ItemBrand = repository.GetLabelData(formCode);
+                string JSONstring = string.Empty;
+                JSONstring = JsonConvert.SerializeObject(ItemBrand);
+                return Json(JSONstring, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception exc)
+            {
+                return Json(exc.Message, JsonRequestBehavior.AllowGet);
+            }
+        }
+
+
     }
 }

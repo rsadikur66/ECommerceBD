@@ -10,6 +10,7 @@ namespace Ecommerce_BD_DAL.Repository.Interface
     public interface IMenu
     {
         DataTable MenuData();
+        DataTable GetLabelData(string formCode);
         DataTable GetHomeData();
     }
 }
