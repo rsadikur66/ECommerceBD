@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<body>
+
+<div class="fullpage" ng-app="myApp" ng-controller="myCtrl">
+    <div class="nav">
+        <img id="logoImage" src="../angularjs-menu/images/Lays-Logo.png" alt="dd.com">
+        <div class="input-group">
+            <input class="form-control" type="text" id="searchall" placeholder="Search for products (e.g. eggs, milk, potato)">
+            <div class="input-group-append">
+                <button type="submit"><i class="fa fa-search"></i></button>
+            </div>            
+          </div>        
+    </div> 
+
+    <div class="sidebar">        
+        <ul style="padding: 0px;" ng-repeat="x in categories| orderBy : 'catid'">
+            <ul id="demo" ng-click=submenu()>{{ x.catname }}
+                <ul ng-repeat="b in Subcategories | orderBy:'subcategoryid'">{{b.englishname}}</ul>
+            </ul>
+        </ul>
+        
+    </div>
+    
+</div>
+
+<script>
+var app = angular.module("myApp", []);
+app.controller("myCtrl", function($scope) {
+     $scope.categories = [
+        {"catname":"Food", "catid":1},
+{"catname":"Baby Care", "catid":3},
+{  "catname":"Beauty & Health", "catid":2}
+];
+
+$scope.Subcategories = [
+        {"subcategoryid":1,"categoryid": 1, "englishname":"Breakfast"},
+        {"subcategoryid":2,"categoryid": 1,"englishname":"Meat & Fish"},
+        {"subcategoryid":3,"categoryid": 1, "englishname":"Dairy"},
+        {"subcategoryid":4,"categoryid": 1,"englishname":"Beverages"},
+];
+
+$scope.submenu = function(){
+    debugger;
+    myUL = document.getElementById("demo");
+var ul = document.createElement('ul');
+var li = document.createElement('li');
+var p = document.createElement('p');
+
+p.innerHTML = "Test123";
+li.appendChild(p);
+ul.appendChild(li);
+myUL.appendChild(ul);
+}
+});
+</script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" ></script>
+</body>
+</html>

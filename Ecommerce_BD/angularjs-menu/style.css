@@ -1,0 +1,48 @@
+*{
+    font-family: 'Courier New', Courier, monospace;
+    margin: 0;
+    padding: 0;
+}
+.fullpage{
+    background-color:bisque;
+}
+
+.sidebar{
+    height: 91vh;
+    width: 200px;
+    padding-top: 3vh;
+    border-right: 1px #b1b1b1 solid;
+    
+}
+.nav{
+    background-color: #fdd670;
+}
+#logoImage{
+    width: 100px;
+    margin-right: 8%;
+}
+#searchall{
+    width: 60%;
+    margin: 5px;
+    /* background-image: url('../angularjs-menu/images/search.png');
+    background-repeat: no-repeat;
+    background-size: 30px 10px;
+    background-position-x: 99%;
+    background-position-y: 50%;
+    cursor: pointer; */
+}
+.input-group {
+    width: 70%;
+}
+
+.input-group button {
+    float: left;
+    width: 20%;
+    padding: 10px;
+    background: #2196F3;
+    color: white;
+    font-size: 17px;
+    border: 1px solid grey;
+    border-left: none;
+    cursor: pointer;
+  }
