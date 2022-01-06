@@ -192,6 +192,7 @@
     <Content Include="Apps\JSservices\menuService.js" />
     <Content Include="Apps\JSservices\Setup\categorySetupService.js" />
     <Content Include="Apps\JSservices\Setup\productSetupService.js" />
+    <Content Include="Apps\views\about.html" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />

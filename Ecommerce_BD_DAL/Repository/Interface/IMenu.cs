@@ -11,5 +11,6 @@ namespace Ecommerce_BD_DAL.Repository.Interface
     {
         DataTable MenuData();
         DataTable GetHomeData();
+        DataTable GetcategoryList();
     }
 }

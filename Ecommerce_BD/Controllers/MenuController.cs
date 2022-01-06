@@ -37,5 +37,22 @@ namespace Ecommerce_BD.Controllers
                 return Json(exc.Message, JsonRequestBehavior.AllowGet);
             }
         }
+        [HttpGet]
+        public ActionResult GetcategoryList()
+        {
+            try
+            {
+                var ItemBrand = repository.GetcategoryList();
+                string JSONstring = string.Empty;
+                JSONstring = JsonConvert.SerializeObject(ItemBrand);
+                return Json(JSONstring, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception exc)
+            {
+                return Json(exc.Message, JsonRequestBehavior.AllowGet);
+            }
+        }
+
+
     }
 }

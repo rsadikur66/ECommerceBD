@@ -19,7 +19,12 @@ namespace Ecommerce_BD_DAL.Repository.Query
 
         public DataTable GetHomeData()
         {
-            return Query($"SELECT Product_Name,Brand_Name,T_LANG2_NAME,Picture,Price FROM Products left JOIN Brands on Brands.Brand_Id = Products.Product_Id LEFT JOIN Categories on Categories.Category_Id = Products.Category_Id");
+            return Query($"select PRODUCTS003.productid,PRODUCTS003.englishproductname Product_Name,PRODUCTS003.productprice Price,PHOTO004.pictureid, PHOTO004.picturename Picture from PRODUCTS003 LEFT JOIN PHOTO004 ON PRODUCTS003.productid = PHOTO004.productid");
         }
+        public DataTable GetcategoryList()
+        {
+            return Query($"SELECT categoryid,englishname FROM CATS001");
+        }
+
     }
 }

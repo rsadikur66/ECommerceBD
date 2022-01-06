@@ -2,27 +2,28 @@
     var dataService = {
         //menudata: MenuData,
         //UserLogout: UserLogout,
-        GetMenuData: GetMenuData
+      GetMenuData: GetMenuData,
+      getcategoryList: getcategoryList
 
     };
     return dataService;
 
-    function LangName() {
-        try {
-            var url = vrtlDirr + 'LangName';
-            var params = {};
-            return $http({
-                url: url,
-                method: "POST",
-                data: params
-            }).then(function (results) {
-                return results.data;
-            }).catch(function (ex) {
-                throw ex;
-            });
-        } catch (ex) {
-            throw ex;
-        }
+  function getcategoryList() {
+    try {
+      var url = "/Menu/GetcategoryList";
+      var params = {};
+      return $http({
+        url: url,
+        method: "GET",
+        data: params
+      }).then(function (results) {
+        return results.data;
+      }).catch(function (ex) {
+        throw ex;
+      });
+    } catch (ex) {
+      throw ex;
+    }
     }
 
     function GetMenuData() {

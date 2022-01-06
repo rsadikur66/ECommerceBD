@@ -1,8 +1,9 @@
 ﻿app.controller('homeController', ["$scope", "$window", "$location", "$filter", "$timeout", "homeService", function ($scope, $window, $location, $filter, $timeout, homeService) {
-    $scope.name = 'Mohammad Sadikur Rahman';
-    $scope.obj = {};
+    
+  $scope.obj = {};
+  $scope.name = 'Mohammad Sadikur Rahman';
     $scope.obj.homeData = {};
-    //getHomeData();
+    getHomeData();
     function getHomeData() {
         var gridData = homeService.GetProductsData();
         gridData.then(function (data) {

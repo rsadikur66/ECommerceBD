@@ -25,29 +25,35 @@
 </style>
 <div ng-app="EcommerceBD" ng-controller="homeController">
 
-    <h3>Electronics</h3>
-    @*<table class="table table-bordered">
-            <thead>
-                <tr>
-                    <th>Product Name</th>
-                    <th>Brand</th>
-                    <th>Category</th>
-                    <th>Picture</th>
-                </tr>
-            </thead>
-            <tr ng-repeat="m in obj.homeData">
-
-                <td>{{m.Product_Name}}</td>
-                <td>{{m.Brand_Name}}</td>
-                <td>{{m.Category_Name}}</td>
-                <td><img class="imghresize" ng-src="~/images/{{m.Picture}}" alt="{{m.Picture}}"></td>
+  <h3>Electronics</h3>
+  <h1>{{name}}</h1>
+  @*<table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Product Name</th>
+                <th>Brand</th>
+                <th>Category</th>
+                <th>Picture</th>
             </tr>
-        </table>*@
-    <div class="col-md-3 thumbnail divhresize" ng-repeat="m in obj.homeData">
-        <img class="imghresize" ng-src="~/images/{{m.Picture}}" alt="{{m.Picture}}">
-        <br />
-        <p>{{m.Product_Name}}</p>
-        <p><b>Price&nbsp;:</b>&nbsp;{{m.Price}}&#2547</p>
-    </div>
+        </thead>
+        <tr ng-repeat="m in obj.homeData">
 
+            <td>{{m.Product_Name}}</td>
+            <td>{{m.Brand_Name}}</td>
+            <td>{{m.Category_Name}}</td>
+            <td><img class="imghresize" ng-src="~/images/{{m.Picture}}" alt="{{m.Picture}}"></td>
+        </tr>
+    </table>*@
+  <div class="col-md-3 thumbnail divhresize" ng-repeat="m in obj.homeData">
+      <img class="imghresize" ng-src="~/images/{{m.Picture}}" alt="{{m.Picture}}">
+      <br />
+      <p>{{m.Product_Name}}</p>
+      <p><b>Price&nbsp;:</b>&nbsp;{{m.Price}}&#2547</p>
+    <a href="#!about">page1</a>
+    <a href="#!page2">page2</a>
+    <a href="#!page3">page3</a>
+    </div>
+  <div ng-view>
+
+  </div>
 </div>
