@@ -23,7 +23,7 @@ namespace Ecommerce_BD_DAL.Repository.Query
         }
         public DataTable GetcategoryList()
         {
-            return Query($"SELECT categoryid,englishname FROM CATS001");
+            return Query($"SELECT * FROM CATS001");
         }
 
     }

@@ -13,16 +13,16 @@ app.factory('Data', function () {
     return { obj: '' };
 });
 
-app.config(["$routeProvider", function ($routeProvider) {
-  $routeProvider.
-    when("/about", {
-      templateUrl: "views/about.html"
-    }).
-    when("/page2", {
-      templateUrl: "~/Views/Home/Contact.cshtml"
-    }).
-    otherwise({
-      redirectTo:"~/Views/Home/HomePage.cshtml"
-    });
-}])
+//app.config(["$routeProvider", function ($routeProvider) {
+//  $routeProvider.
+//    when("/about", {
+//      templateUrl: "views/about.html"
+//    }).
+//    when("/page2", {
+//      templateUrl: "~/Views/Home/Contact.cshtml"
+//    }).
+//    otherwise({
+//      redirectTo:"/"
+//    });
+//}])
                                      

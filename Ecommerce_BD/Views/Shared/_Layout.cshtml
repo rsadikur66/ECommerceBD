@@ -1,5 +1,5 @@
 ﻿<!DOCTYPE html>
-<html>
+<html ng-app="EcommerceBD">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -65,12 +65,10 @@
 
   @*<script src="~/Scripts/angular-sanitize.min.js"></script>
     <script src="~/Scripts/angular-route.min.js"></script>*@
-
-
   @*@Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")*@
 </head>
-<body ng-app="EcommerceBD" ng-controller="menuController">
+<body ng-controller="menuController">
   <div class="wrapper">
     <!-- Sidebar  -->
     <nav id="sidebar">
@@ -94,12 +92,16 @@
 
       </ul>-->
       <ul>
-        <li ng-repeat="item in obj.formsList">
+        @*<li ng-repeat="item in obj.formsList">
               <a href="../{{Menuheader}}/{{item.linktext}}">{{item.form_name}}</a>
+          </li>*@
+
+          <li ng-repeat="item in obj.categoriesList">
+              <img style="width: 20px;height: 20px;display: block;float: left;margin-right: 5px;" src="./Images/{{item.Icon}}" alt="">
+              <div>
+                  <a href="product/{{item.SourceUrl}}/{{item.CategoryId}}">{{item.CategoryName}}</a>
+              </div>
           </li>
-        @*<li ng-repeat="item in obj.categoriesList">
-          <a href="../Home/GetHomeData">{{item.englishname}}</a>
-        </li>*@
       </ul>
     </nav>
     <!-- Page Content  -->

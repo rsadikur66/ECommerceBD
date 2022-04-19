@@ -3,11 +3,12 @@
   $scope.obj = {};
   $scope.name = 'Mohammad Sadikur Rahman';
     $scope.obj.homeData = {};
-    getHomeData();
+    //getHomeData();
+    
     function getHomeData() {
         var gridData = homeService.GetProductsData();
         gridData.then(function (data) {
-            $scope.obj.homeData = JSON.parse(data);
+            $scope.obj.homeData = data;
             console.log($scope.obj.homeData);
         });
     }
