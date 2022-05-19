@@ -1,6 +1,8 @@
 ﻿app.controller("products_ctr", ['$scope', '$routeParams', "homeService", function ($scope, $routeParams, homeService) {
     $scope.routevalue = $routeParams.a;
     $scope.categoryId = $routeParams.b;
+    $scope.qty_input_val = 1;
+    $scope.disableQty = true;
     getProdDataByCategory($scope.categoryId);
     function getProdDataByCategory(catId) {
         var catData = homeService.GetProdDataByCat(catId);
