@@ -1,7 +1,9 @@
-﻿app.controller('homeController', ["$scope", "$window", "$location", "$filter", "$timeout", "homeService", function ($scope, $window, $location, $filter, $timeout, homeService) {
-    
+﻿app.controller('homeController', ["$scope", "$routeParams", "$window", "$location", "$filter", "$timeout", "homeService", function ($scope, $routeParams, $window, $location, $filter, $timeout, homeService) {
+    $scope.routevalue = $routeParams.a;
+    $scope.categoryId = $routeParams.b;
+    console.log($scope.routevalue + 'and' + $scope.categoryId);
   $scope.obj = {};
-  $scope.name = 'Mohammad Sadikur Rahman';
+  $scope.name = "sadik";
     $scope.obj.homeData = {};
     //getHomeData();
     
@@ -14,6 +16,8 @@
     }
 }
 ]);
+
+
 
 
 

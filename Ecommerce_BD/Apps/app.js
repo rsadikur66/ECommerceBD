@@ -1,6 +1,6 @@
 ﻿/// <reference path="../scripts/angular.min.js" />
 /// <reference path="../../../scripts/angular_intellisense.js" />
-var app = angular.module('EcommerceBD', ['ui.select', 'ngSanitize', 'angularUtils.directives.dirPagination', 'ngFileUpload','ngRoute']);
+var app = angular.module('EcommerceBD', ['ui.select', 'ngSanitize', 'angularUtils.directives.dirPagination', 'ngFileUpload', 'ngRoute', ]);
 
 app.run(function ($rootScope, $templateCache) {
     $rootScope.$on('$routeChangeStart', function (event, next, current) {
@@ -13,16 +13,16 @@ app.factory('Data', function () {
     return { obj: '' };
 });
 
-//app.config(["$routeProvider", function ($routeProvider) {
-//  $routeProvider.
-//    when("/about", {
-//      templateUrl: "views/about.html"
-//    }).
-//    when("/page2", {
-//      templateUrl: "~/Views/Home/Contact.cshtml"
-//    }).
-//    otherwise({
-//      redirectTo:"/"
-//    });
-//}])
+app.config(["$routeProvider", function ($routeProvider) {
+    var d = window.location;
+    $routeProvider.
+        when("/product/:a/:b", {
+            templateUrl: '/Html_Views/products.html',
+            controller: 'products_ctr'
+        }).
+        otherwise({
+            redirectTo: '/'
+        })
+   // $locationProvider.html5Mode(true).hashPrefix('!')
+}]);
                                      

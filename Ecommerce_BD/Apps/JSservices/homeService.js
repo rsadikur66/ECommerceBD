@@ -1,7 +1,7 @@
 ﻿app.service("homeService", ["$http", function ($http) {
     var dataService = {
         //menudata: MenuData,
-        //UserLogout: UserLogout,
+        GetProdDataByCat: GetProdDataByCat,
         GetProductsData: GetProductsData
 
     };
@@ -14,6 +14,25 @@
             return $http({
                 url: url,
                 method: "GET",
+                data: params
+            }).then(function (results) {
+                return results.data;
+            }).catch(function (ex) {
+                throw ex;
+            });
+        } catch (ex) {
+            throw ex;
+        }
+    }
+
+    function GetProdDataByCat(catId) {
+        try {
+            var params = { catId: catId };
+            var url = "/Home/GetProductsByCat";
+            return $http({
+                url: url,
+                method: "POST",
+                //contentType: "application/json",
                 data: params
             }).then(function (results) {
                 return results.data;

@@ -17,7 +17,7 @@ namespace Ecommerce_BD.Controllers
             repository = _repository;
         }
 
-        public ActionResult Index()
+        public ActionResult Products()
         {
             return View();
         }
@@ -36,11 +36,23 @@ namespace Ecommerce_BD.Controllers
                 return Json(exc.Message, JsonRequestBehavior.AllowGet);
             }
         }
-        public ActionResult About()
+        public ActionResult GetProductsByCat(string catId)
         {
-            ViewBag.Message = "Your application description page.";
-
-            return View();
+            try
+            {
+                var data = repository.GetProductByCategory(catId);
+                string JSONstring = string.Empty;
+                JSONstring = JsonConvert.SerializeObject(data);
+                return Json(JSONstring, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
+                return Json(ex.Message, JsonRequestBehavior.AllowGet);
+            }
+            //var ddd = classQ.getProductsDataByCategory(categoryId);
+            //string json = JsonConvert.SerializeObject(ddd, Formatting.Indented);
+            //return Ok(json);
+            
         }
 
         public ActionResult Contact()
