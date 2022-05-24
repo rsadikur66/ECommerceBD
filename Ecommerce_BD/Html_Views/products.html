@@ -19,146 +19,213 @@ text-decoration: underline;
 /* [3] Finally, transforming the image when container gets hovered */
 .img-hover-zoom:hover img {
   transform: scale(1.5);
-}   
+}
+
+    #mainView {
+        clear: both;
+        padding: 0 1em;
+    }
+    .NonQuantityClass {
+        white-space: break-spaces;
+    }
+    #AddToCartModal{
+        left:430px;
+    }
 </style>
-<div ng-controller="products_ctr">     
-    <p class="hoverH4 h5 text-secondary">{{routevalue}}/{{categoryId}}</p>
+<div ng-controller="products_ctr">
+    <!--<p class="hoverH4 h5 text-secondary">{{routevalue}}/{{categoryId}}</p>-->    
     <div class="m-1 img-thumbnail rounded float-left" ng-repeat="d in productList track by $index">
-    <img  ng-src="../Images/{{d.ImageName}}" style="width: 200px;height: 200px;" >
-    <h6 class="text-center"> <small>{{d.ProductName}}</small></h6>
-    <h6 class="text-center" ng-if="d.QuantityName == '' ? &nbsp; : d.QuantityName" > <small></small></h6>
-    <h6 class="text-center"><b>{{d.Price}}</b></h6>
-    <button type="button" class="btn btn-outline-info btn-sm btn-block"
-        data-toggle="modal" data-target="#exampleModal" ng-click=modalClick(d)>Details</button>
-</div>
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
-aria-labelledby="exampleModalLabel"  >
-<div class="modal-dialog modal-xl" role="document" >
-    <div class="modal-content">
-        <div class="modal-body">
-            <div class="row m-1">
-                <div class="col-md-6 img-hover-zoom">
-                    <img class="img-fluid" ng-src="../Images/{{MdlProImage}}" style="width: 300px;height: 300px;">
+        <img ng-src="../Images/{{d.ImageName}}" style="width: 200px;height: 200px;">
+        <h6 class="text-center"> <small>{{d.ProductName}}</small></h6>
+        <!--<p class="text-center" ng-if="d.QuantityName == null ? 0 : d.QuantityName"> <small ></small></p>-->
+        <h6 class="text-center" ng-class="{NonQuantityClass: d.QuantityName == null}"> <small>{{d.QuantityName}}</small></h6>
+        <h6 class="text-center"><b>{{d.Price}}</b></h6>
+        <button type="button" class="btn btn-outline-info btn-sm btn-block"
+                data-toggle="modal" data-target="#exampleModal" ng-click=modalClick(d)>
+            Details
+        </button>
+        <button type="button" class="btn btn-outline-danger btn-sm btn-block" data-toggle="modal" data-target="#AddToCartModal" ng-click="AddToBag(d)">
+            Add to Cart
+        </button>
+    </div>
+    <div class="modal fade" id="AddToCartModal" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="staticBackdropLabel"></h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
                 </div>
-                <div class="col-md-6">
-                    <div class="row"><p class="h3 m-2">{{ProName}}</p></div>
-                    <div class="row"><p class="h5 m-2">{{ProQuantityName}}</p></div>
-                    <div class="row">
-                        <div class="col-md-6 px-0 float-left"><h2>&#2547;{{ProPrice}}</h2></div>
-                        <div class="col-md-6">
-                            <button type="button" class="btn btn-danger
-                                float-right">
-                                <span class="badge badge-warning">29%</span>&nbsp;<b>OFF</b>
-                            </button>
-                        </div>
+                <div class="modal-body">
+                    <div id="mainView">
+                        <div ng-include="currentTab"></div>
                     </div>
-                    <div class="row">
-                        <div class="col-md-6 px-0 float-left">
-                            <div class="input-group mb-3">
-                                <div class="input-group-prepend">
-                                    <button class="btn btn-dark btn-lg"
-                                        id="minus-btn" ng-click="subtractQty()"><i class="fa fa-minus"></i>
-                                        </button>
-                                </div>
-                                <input type="number" id="qty_input"
-                                    ng-disabled="disableQty" class="form-control form-control-lg"
-                                    ng-model="qty_input_val">
-                                <div class="input-group-prepend">
-                                    <button class="btn btn-dark btn-lg"
-                                        ng-click="addQty()"  id="plus-btn"><i class="fa
-                                            fa-plus"></i></button>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <button class="btn btn-danger btn-lg
-                                float-right" id="plus-btn">Buy Now</button>
-                        </div>
-                    </div>
-                    <hr class="my-12 bg-dark" />
-                    <div class="row">
-                        <p class="m-2"> <small>If you are concerned about your
-                                baby’s prosperity, buy horlicks jar from
-                                chaldal which contains a wide range of
-                                vitamins and minerals essential for
-                                enrichment.</small> </p>
-                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Understood</button>
                 </div>
             </div>
-            <div class="row m-1" >  
-                <!-- style="background-color: #6c757d45;" -->
-                <div class="row col-md-12 bg-secondary m-1">
-                    <div class="col-md-3 m-0">
-                        <img class="float-left" src="../Images/1-hour.jpg" alt="" style="height: 40px;width: 40px;" >
-                        <p class="h6 mt-2 text-white">30 minute delivery</p>
-                    </div>
-                    <div class="col-md-3">           
-                            <img class="float-left" src="../Images/cash-on-delivery.jpg" style="height: 40px;width: 40px;" alt="">
-                            <p class="h6 mt-2 text-white">Cash on delivery</p>
-                        </div>
-                    <div class="col-md-6 pl-payment">
-                        <p class="h6 float-left mt-2 text-white"> Pay With </p>                                
-                            <img src="../Images/Amex.jpg" style="width: 40px;height: 40px;" alt="" srcset="">
-                            <img src="../Images/mastercard.jpg" style="width: 40px;height: 40px;" alt="" srcset=""> 
-                            <img src="../Images/VIsa.jpg" style="width: 40px;height: 40px;" alt="" srcset="">     
-                            <img src="../Images/bkash.jpg" style="width: 40px;height: 40px;" alt="" srcset="">                                
-                    </div>
-                </div>
-                    <div class="col-md-9">
-                        <p class="h5"><small> Chaldal.com is an online shop available in Dhaka, Narayanganj, Chattogram, Jashore and Khulna. We believe time is valuable to our fellow residents, and that they should not have to waste hours in traffic, brave bad weather and wait in line just to buy basic necessities like eggs! This is why Chaldal delivers everything you need right at your door-step and at no additional cost.</small></p>
-                        <div class="row">
-                            <div class="col-md-3 m-3">                                        
-                                <p class="h6 text-dark">Customer Service</p>
-                                <a class="text-dark" href="#">Contact Us</a><br/>
-                                <a class="text-dark" href="http://">FAQ</a>
-                            </div>
-                            <div class="col-md-3 m-3">
-                                <p class="h6 text-dark">About Chaldal</p>
-                                <a class="text-dark" href="http://">Privacy Policy</a>
-                                <br>
-                                <a class="text-dark" href="http://">Terms of Use</a>
-                            </div>
-                            <div class="col-md-3 m-3">
-                                <p class="h6 text-dark">For Business</p>
-                                <a class="text-dark" href="http://">Corporate</a>
-                            </div>
-                        </div>
-                        
-                    </div>
-                    <div class="col-md-3 p-2">
-                        <div class="row">
-                          <div class="col-md-6"><img class="w-100" src="../Images/google_play_store.jpg"  alt="" srcset=""></div>
-                          <div class="col-md-6"><img class="w-100" src="../Images/app_store.jpg" alt="" srcset=""></div>
-                        </div>
-                        <div class="row pt-4">                                  
-                                <img class="h-25 ml-auto" src="../Images/phone_icon.jpg" alt="" srcset=""><span ><p class="h4 text-secondary ">16710</p></span>                             
-                                                                
-                        </div>
-                        <div class="row float-right">
-                           <p class="h6 font-weight-normal">or email <b class="text-dark">support@chaldal.com</b></p>
-                        </div>
-                        <div class="row float-left ml-auto pt-2">
-                            <div class="col-md-4"></div>
-                            <div class="col-md-2 col-2"><img src="../Images/Facebook.jpg" style="width: 40px;" alt=""></div>
-                            <div class="col-md-2 col-2 "><img class="float-left" src="../Images/Youtube.jpg" style="width: 40px;" alt="" ></div>
-                            <div class="col-md-2 col-2 "><img  src="../Images/twitter.jpg" style="width: 40px;" alt="" ></div>
-                            <div class="col-md-2 col-2 float-right"><img  src="../Images/Instagram.jpg"  style="width: 40px;" alt=""></div>
-                            
-                           
-                        </div>
-                    </div>
-                
-                <div class="row">
-                    
-                </div>
-                    
-            </div>
-        </div>
-        <div class="modal-footer">
-            <button type="button" class="btn btn-secondary"
-                data-dismiss="modal">Close</button>
         </div>
     </div>
-</div>
-</div>
+    
+    <script type="text/ng-template" id="tabRequisition.tpl.html">
+        <div style="width:100%;">
+            <table style="width:90%; margin: 1% auto; margin-top: 20px;">
+                <tr style="width:100%">
+                    <td style="width:10%">
+                        <label id="lblRequestDate" class="ng-cloak">{{itemName}}</label>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </script>
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-xl" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="staticBackdropLabel">{{ProName}}</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="row m-1">
+                        <div class="col-md-5 border border-primary rounded img-hover-zoom">
+                            <img class="img-fluid" ng-src="../Images/{{MdlProImage}}" style="width: 300px;height: 300px;">
+                        </div>
+                        <div class="col-md-1"></div>
+                        <div class="col-md-6">
+                            <div class="row"><p class="h3 m-2">{{ProName}}</p></div>
+                            <div class="row"><p class="h5 m-2">{{ProQuantityName}}</p></div>
+                            <div class="row">
+                                <div class="col-md-6 px-0 float-left"><h2>&#2547;{{ProPrice}}</h2></div>
+                                <div class="col-md-6">
+                                    <button type="button" class="btn btn-danger
+                                float-right">
+                                        <span class="badge badge-warning">29%</span>&nbsp;<b>OFF</b>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6 px-0 float-left">
+                                    <div class="input-group mb-3">
+                                        <div class="input-group-prepend">
+                                            <button class="btn btn-dark btn-lg"
+                                                    id="minus-btn" ng-click="subtractQty()">
+                                                <i class="fa fa-minus"></i>
+                                            </button>
+                                        </div>
+                                        <input type="number" id="qty_input"
+                                               ng-disabled="disableQty" class="form-control form-control-lg"
+                                               ng-model="qty_input_val">
+                                        <div class="input-group-prepend">
+                                            <button class="btn btn-dark btn-lg"
+                                                    ng-click="addQty()" id="plus-btn">
+                                                <i class="fa
+                                            fa-plus"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <button class="btn btn-danger btn-lg
+                                float-right" id="plus-btn">
+                                        Buy Now
+                                    </button>
+                                </div>
+                            </div>
+                            <hr class="my-12 bg-dark" />
+                            <div class="row">
+                                <p class="m-2">
+                                    <small>
+                                        If you are concerned about your
+                                        baby’s prosperity, buy horlicks jar from
+                                        chaldal which contains a wide range of
+                                        vitamins and minerals essential for
+                                        enrichment.
+                                    </small>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row m-1">
+                        <!-- style="background-color: #6c757d45;" -->
+                        <div class="row col-md-12 bg-secondary m-1">
+                            <div class="col-md-3 m-0">
+                                <img class="float-left" src="../Images/1-hour.jpg" alt="" style="height: 40px;width: 40px;">
+                                <p class="h6 mt-2 text-white">30 minute delivery</p>
+                            </div>
+                            <div class="col-md-3">
+                                <img class="float-left" src="../Images/cash-on-delivery.jpg" style="height: 40px;width: 40px;" alt="">
+                                <p class="h6 mt-2 text-white">Cash on delivery</p>
+                            </div>
+                            <div class="col-md-6 pl-payment">
+                                <p class="h6 float-left mt-2 text-white"> Pay With </p>
+                                <img src="../Images/Amex.jpg" style="width: 40px;height: 40px;" alt="" srcset="">
+                                <img src="../Images/mastercard.jpg" style="width: 40px;height: 40px;" alt="" srcset="">
+                                <img src="../Images/VIsa.jpg" style="width: 40px;height: 40px;" alt="" srcset="">
+                                <img src="../Images/bkash.jpg" style="width: 40px;height: 40px;" alt="" srcset="">
+                            </div>
+                        </div>
+                        <div class="col-md-9">
+                            <p class="h5"><small> Chaldal.com is an online shop available in Dhaka, Narayanganj, Chattogram, Jashore and Khulna. We believe time is valuable to our fellow residents, and that they should not have to waste hours in traffic, brave bad weather and wait in line just to buy basic necessities like eggs! This is why Chaldal delivers everything you need right at your door-step and at no additional cost.</small></p>
+                            <div class="row">
+                                <div class="col-md-3 m-3">
+                                    <p class="h6 text-dark">Customer Service</p>
+                                    <a class="text-dark" href="#">Contact Us</a><br />
+                                    <a class="text-dark" href="http://">FAQ</a>
+                                </div>
+                                <div class="col-md-3 m-3">
+                                    <p class="h6 text-dark">About Chaldal</p>
+                                    <a class="text-dark" href="http://">Privacy Policy</a>
+                                    <br>
+                                    <a class="text-dark" href="http://">Terms of Use</a>
+                                </div>
+                                <div class="col-md-3 m-3">
+                                    <p class="h6 text-dark">For Business</p>
+                                    <a class="text-dark" href="http://">Corporate</a>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="col-md-3 p-2">
+                            <div class="row">
+                                <div class="col-md-6"><img class="w-100" src="../Images/google_play_store.jpg" alt="" srcset=""></div>
+                                <div class="col-md-6"><img class="w-100" src="../Images/app_store.jpg" alt="" srcset=""></div>
+                            </div>
+                            <div class="row pt-4">
+                                <img class="h-25 ml-auto" src="../Images/phone_icon.jpg" alt="" srcset=""><span><p class="h4 text-secondary ">16710</p></span>
+
+                            </div>
+                            <div class="row float-right">
+                                <p class="h6 font-weight-normal">or email <b class="text-dark">support@chaldal.com</b></p>
+                            </div>
+                            <div class="row float-left ml-auto pt-2">
+                                <div class="col-md-4"></div>
+                                <div class="col-md-2 col-2"><img src="../Images/Facebook.jpg" style="width: 40px;" alt=""></div>
+                                <div class="col-md-2 col-2 "><img class="float-left" src="../Images/Youtube.jpg" style="width: 40px;" alt=""></div>
+                                <div class="col-md-2 col-2 "><img src="../Images/twitter.jpg" style="width: 40px;" alt=""></div>
+                                <div class="col-md-2 col-2 float-right"><img src="../Images/Instagram.jpg" style="width: 40px;" alt=""></div>
+
+
+                            </div>
+                        </div>
+
+                        <div class="row">
+
+                        </div>
+
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary"
+                            data-dismiss="modal">
+                        Close
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>

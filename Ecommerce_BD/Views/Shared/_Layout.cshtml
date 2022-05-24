@@ -75,10 +75,12 @@
 <body ng-controller="menuController">
     <div class="wrapper">
         <!-- Sidebar  -->
-        <nav id="sidebar">
-            
-            <div class="sidebar-header">
-                <a href="../Home/HomePage" class="active webtitle">{{name}}</a>
+        <nav id="sidebar">            
+            <div class="sidebar-header">              
+                <a href="/">
+                    <img src="~/Images/chaldal-com.jpg" alt="chaldal.com" width="150px" height="50px" />
+                </a>
+                
             </div>
             <ul>
                 <li ng-repeat="item in obj.categoriesList">
@@ -100,6 +102,7 @@
                     <button class="btn btn-dark d-inline-block d-lg-none ml-auto" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                         <i class="fas fa-align-justify"></i>
                     </button>
+                    <button class="btn btn-success" type="button" data-toggle="modal" data-target="#LoginModal">Log In</button>
                 </div>
             </nav>
 

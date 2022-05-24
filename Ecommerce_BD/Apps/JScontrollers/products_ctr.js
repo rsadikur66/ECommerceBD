@@ -3,13 +3,28 @@
     $scope.categoryId = $routeParams.b;
     $scope.qty_input_val = 1;
     $scope.disableQty = true;
+    $scope.currentTab = 'tabRequisition.tpl.html';
     getProdDataByCategory($scope.categoryId);
     function getProdDataByCategory(catId) {
         var catData = homeService.GetProdDataByCat(catId);
         catData.then(function (data) {
             $scope.productList = JSON.parse(data);
+            //for (var i = 0; i < $scope.productList.length; i++) {
+            //    $scope.productList[i].QuantityName = $scope.productList[i].QuantityName == null ? '&nbsp;' : $scope.productList[i].QuantityName;
+            //}
             console.log($scope.productList);
         })
+    }
+
+    //$scope.onClickTab = function () {        
+    //    $scope.currentTab = 'tabRequisition.tpl.html';
+    //    /*document.getElementById('exampleModal').style.display = 'none';*/
+        
+    //}
+
+    $scope.AddToBag = function (d) {
+        console.log(d);
+        $scope.itemName = d.ProductName;
     }
     $scope.modalClick = function (d) {
         debugger;
