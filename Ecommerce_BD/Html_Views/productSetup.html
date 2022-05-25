@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="../css/dashboard.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.8.3/angular.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-route/1.8.3/angular-route.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-select/0.19.8/select.min.js"></script>
+
+    <script src="../Apps/app.js"></script>
+    <script src="..//Apps/JScontrollers/Setup/productSetupController.js"></script>
+    <script src="../Apps/JSservices/Setup/productSetupService.js"></script>
+
+    <title>Document</title>
+</head>
+
+<body ng-app="EcommerceBD" ng-controller="productSetup_ctr">
+    <div class="container">
+        <div class="row mt-5">
+            <div class="col-md-12">
+                <div class="row">
+                    <div class="col-md-3"> <label>Product Name</label></div>
+                    <div class="col-md-9 mt-1"><input type="text" name="" ng-model="ProductName" id="txtProductName" class="form-control">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-3"> <label>{{price}}</label></div>
+                    <div class="col-md-9 mt-1"><input type="text" name="" ng-model="Price" id="txtPrice" class="form-control"></div>
+                </div>
+                <div class="row">
+                    <div class="col-md-3"> <label>Quantity</label></div>
+                    <div class="col-md-9 mt-1"><input type="text" name="" ng-model="QuantityAmount" id="txtQuantity" class="form-control"></div>
+                </div>
+                <div class="row">
+                    <div class="col-md-3"> <label>Unit</label></div>
+                    <div class="col-md-9 mt-1">
+                        <select class="form-control" ng-model="selectedMeasureUnit">
+                            <option ng-repeat="x in obj.measureUnit" value="{{x.MeaUnitId}}">{{x.MeaUnitName}}</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-3"> <label>Category</label></div>
+                    <div class="col-md-9 mt-1">
+                        <select class="form-control" ng-model="selectedCategory">
+                            <option ng-repeat="x in obj.categories" value="{{x.CategoryId}}">{{x.CategoryName}}</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-3"> <label>Product Image</label></div>
+                    <div class="col-md-9 mt-1">
+                        <input type="file" id="uploadFile" multiple file-upload/>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-4 col-md-4 col-sm-4" ng-repeat="step in files">
+                            <img style="max-width:100px;margin:5px;" id="image{{$index}}" ng-src="{{step.src}}" /><span id="close" ng-click="hide($index)">X</span>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <button type="submit" class="btn btn-success" ng-click="Save()" >Save</button>
+                    <h1>You selected: {{selectedCategory}}</h1>
+                    <h1>You selected: {{selectedMeasureUnit}}</h1>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.2.1.min.js"> </script>
+</body>
+
+</html>

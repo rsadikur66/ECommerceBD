@@ -1,36 +1,32 @@
-﻿/*const { forEach } = require("angular");*/
-
-app.controller('productSetupController', ["$scope", "$window", "$location", "$filter", "$timeout", "productSetupService", "categorySetupService","Upload", function ($scope, $window, $location, $filter, $timeout, productSetupService, categorySetupService, Upload) {
+﻿app.controller("productSetup_ctr", ["$scope", "productSetupService", function ($scope, productSetupService) {
     $scope.obj = {};
-    $scope.obj.ambulance = [];
+    $scope.price = "Price";
     $scope.files = [];
-    getCategoriesData();   
-    getProductListData();
+    getCategoriesData();
     function getCategoriesData() {
-        var categoriesData = categorySetupService.GetCategories();
+        var categoriesData = productSetupService.GetCategories();
         categoriesData.then(function (data) {
-            $scope.obj.categories = JSON.parse(data);
+            $scope.obj.categories = data;
             console.log($scope.obj.categories);
         });
     }
-    function getProductListData() {
-        var productsListData = productSetupService.GetProductsList();
-        productsListData.then(function (data) {
-            $scope.obj.productsList = JSON.parse(data);
-        })
+
+    getMeasureUnitData();
+    function getMeasureUnitData() {
+        var MeasureUnitData = productSetupService.GetMeasureUnitData();
+        MeasureUnitData.then(function (data) {
+            $scope.obj.measureUnit = data;
+            console.log($scope.obj.measureUnit);
+        });
     }
-    function ddd() {
-        var productsListData = productSetupService.GetProductsList();
-        productsListData.then(function (data) {
-            $scope.obj.productsList = JSON.parse(data);
-        })
-    }
-    //3rd try
-    //3rd try
-    
-    $scope.hide = function () {
-        document.getElementById("image1").style.display = "none";
-        document.getElementById("close").style.display = "none";
+    $scope.Save = function () {
+        console.log(document.getElementById('uploadFile').files[0].name);
+        console.log($scope.ProductName);
+        console.log($scope.Price);
+        console.log($scope.QuantityAmount);
+        console.log($scope.selectedMeasureUnit);
+        console.log($scope.selectedCategory);
+
     }
 
     $(function () {
@@ -55,73 +51,7 @@ app.controller('productSetupController', ["$scope", "$window", "$location", "$fi
     });
 
 
-
-    ///3rd try
-    $scope.preview_image = function (files) {
-        for (var i = 0; i < files.length; i++) {
-            $scope.indx = i;
-            var reader = new FileReader();
-            reader.onload = function () {
-                var output = document.getElementById('output_image');
-                $($.parseHTML('<img>')).attr('src', reader.result).appendTo(output);
-               // output.src = reader.result;
-            }
-
-            reader.readAsDataURL(files[i]);
-        }
-        
-    }
-    $scope.$on("fileSelected", function (event, args) {
-        var item = args;
-        $scope.files.push(item);
-        var reader = new FileReader();
-
-        reader.addEventListener("load", function () {
-            $scope.$apply(function () {
-                item.src = reader.result;
-            });
-        }, false);
-
-        if (item.file) {
-            reader.readAsDataURL(item.file);
-        }
-        //alert('function call.....');
-    });
-
-    //Upload
-    $scope.UploadFiles = function (files) {
-        $scope.SelectedFiles = files;
-        
-        if ($scope.SelectedFiles && $scope.SelectedFiles.type == "image/jpeg") {
-            for (var i = 0; i < $scope.SelectedFiles; i++) {
-                /*document.getElementById("#imagePreview").innerHTML = "<div>This is inside my element with id=" + $scope.SelectedFiles+" </div>"*/
-                console.log($scope.SelectedFiles);
-            }
-           
-            //Upload.upload({
-            //    url: '/ProductSetup/PicUpload/',
-            //    data: {
-            //        files: $scope.SelectedFiles
-            //    }
-            //}).then(function (response) {
-            //    $timeout(function () {
-            //        $scope.Result = response.data;
-            //    });
-            //}, function (response) {
-            //    if (response.status > 0) {
-            //        var errorMsg = response.status + ': ' + response.data;
-            //        alert(errorMsg);
-            //    }
-            //}, function (evt) {
-            //    var element = angular.element(document.querySelector('#dvProgress'));
-            //    $scope.Progress = Math.min(100, parseInt(100.0 * evt.loaded / evt.total));
-            //    element.html('<div style="width: ' + $scope.Progress + '%">' + $scope.Progress + '%</div>');
-            //});
-        }
-    };
-}
-]);
-
+}]);
 app.directive('fileUpload', function () {
     return {
         scope: true, //create a new scope
@@ -137,36 +67,5 @@ app.directive('fileUpload', function () {
                 }
             });
         }
-    };
-});
-app.filter('propsFilter', function () {
-    return function (items, props) {
-        var out = [];
-
-        if (angular.isArray(items)) {
-            var keys = Object.keys(props);
-
-            items.forEach(function (item) {
-                var itemMatches = false;
-
-                for (var i = 0; i < keys.length; i++) {
-                    var prop = keys[i];
-                    var text = props[prop].toLowerCase();
-                    if (item[prop].toString().toLowerCase().indexOf(text) !== -1) {
-                        itemMatches = true;
-                        break;
-                    }
-                }
-
-                if (itemMatches) {
-                    out.push(item);
-                }
-            });
-        } else {
-            // Let the output be the input untouched
-            out = items;
-        }
-
-        return out;
     };
 });

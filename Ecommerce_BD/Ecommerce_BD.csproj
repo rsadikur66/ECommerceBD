@@ -199,6 +199,7 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\CuteAlertStyle.css" />
+    <Content Include="Content\dashboard.css" />
     <Content Include="Content\layout.css" />
     <Content Include="Content\select.css" />
     <Content Include="Content\select2.css" />
@@ -210,7 +211,9 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Html_Views\dashboard.html" />
     <Content Include="Html_Views\products.html" />
+    <Content Include="Html_Views\productSetup.html" />
     <Content Include="Images\1-hour.jpg" />
     <Content Include="Images\aci-savlon-liquid-antiseptic-500-ml.jpg" />
     <Content Include="Images\Amex.jpg" />
