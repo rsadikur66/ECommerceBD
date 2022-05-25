@@ -3,7 +3,8 @@
     $scope.categoryId = $routeParams.b;
     $scope.qty_input_val = 1;
     $scope.disableQty = true;
-    $scope.currentTab = 'tabRequisition.tpl.html';
+    document.getElementById('mainView').style.display = 'none';
+   // $scope.currentTab = 'tabRequisition.tpl.html';
     getProdDataByCategory($scope.categoryId);
     function getProdDataByCategory(catId) {
         var catData = homeService.GetProdDataByCat(catId);
@@ -21,9 +22,12 @@
     //    /*document.getElementById('exampleModal').style.display = 'none';*/
         
     //}
-
+    $scope.CloseCart = function () {
+        document.getElementById('mainView').style.display = 'none';
+    }
     $scope.AddToBag = function (d) {
-        console.log(d);
+        document.getElementById('mainView').style.display = 'block';
+        $scope.currentTab = 'tabRequisition.tpl.html';
         $scope.itemName = d.ProductName;
     }
     $scope.modalClick = function (d) {

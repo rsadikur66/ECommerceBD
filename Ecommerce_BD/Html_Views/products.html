@@ -1,39 +1,61 @@
 <style>
-    .hoverH4{
+    .hoverH4 {
         font-family: 'Georgia';
     }
-    .pl-payment{
-        padding-left:25% !important;
+
+    .pl-payment {
+        padding-left: 25% !important;
     }
-.hoverH4:hover{
-text-decoration: underline;
-}
-.img-hover-zoom {
-  height: 300px; /* [1.1] Set it as per your need */
-  overflow: hidden; /* [1.2] Hide the overflowing of child elements */
-}
-/* [2] Transition property for smooth transformation of images */
-.img-hover-zoom img {
-  transition: transform .5s ease;
-}
-/* [3] Finally, transforming the image when container gets hovered */
-.img-hover-zoom:hover img {
-  transform: scale(1.5);
-}
+
+    .hoverH4:hover {
+        text-decoration: underline;
+    }
+
+    .img-hover-zoom {
+        height: 300px; /* [1.1] Set it as per your need */
+        overflow: hidden; /* [1.2] Hide the overflowing of child elements */
+    }
+        /* [2] Transition property for smooth transformation of images */
+        .img-hover-zoom img {
+            transition: transform .5s ease;
+        }
+        /* [3] Finally, transforming the image when container gets hovered */
+        .img-hover-zoom:hover img {
+            transform: scale(1.5);
+        }
 
     #mainView {
         clear: both;
         padding: 0 1em;
     }
+
     .NonQuantityClass {
         white-space: break-spaces;
     }
-    .cartPanel{
+    /*.cartPanel{
         left:37vw;
+    }*/
+    .cartPanel {
+        position: fixed;
+        width: 25%;
+        right: 0;
+        height: 100%;
+    }
+
+    .cartDiv {
+        background-color: bisque;
+        float: right;
+        display: block;
+        position: fixed;
+        right: 0;
+        margin: 15px;
+        height: 100%;
+        width: 300px;
+        border: solid 1px cornflowerblue;
     }
 </style>
 <div ng-controller="products_ctr">
-    <!--<p class="hoverH4 h5 text-secondary">{{routevalue}}/{{categoryId}}</p>-->    
+    <!--<p class="hoverH4 h5 text-secondary">{{routevalue}}/{{categoryId}}</p>-->
     <div class="m-1 img-thumbnail rounded float-left" ng-repeat="d in productList track by $index">
         <img ng-src="../Images/{{d.ImageName}}" style="width: 200px;height: 200px;">
         <h6 class="text-center"> <small>{{d.ProductName}}</small></h6>
@@ -44,41 +66,37 @@ text-decoration: underline;
                 data-toggle="modal" data-target="#exampleModal" ng-click=modalClick(d)>
             Details
         </button>
-        <button type="button" class="btn btn-outline-danger btn-sm btn-block" data-toggle="modal" data-target="#AddToCartModal" ng-click="AddToBag(d)">
+        <button type="button" class="btn btn-outline-danger btn-sm btn-block" ng-click="AddToBag(d)">
             Add to Cart
         </button>
     </div>
-    <div class="modal fade" id="AddToCartModal" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content cartPanel">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="staticBackdropLabel"></h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
+
+    <div class="cartDiv" id="mainView">
+        <div ng-include="currentTab"></div>
+    </div>
+    <script type="text/ng-template" id="tabRequisition.tpl.html">
+        <div class="container m-0 p-0" style="height:100%;">
+            <div class="row mt-2 mx-1 mt-2 p-0">
+                <div class="col-md-8">
+                    <i class="fa fa-shopping-cart" aria-hidden="true"></i><span>&nbsp;&nbsp;&nbsp;1&nbsp;&nbsp;ITEM</span>
                 </div>
-                <div class="modal-body">
-                    <div id="mainView">
-                        <div ng-include="currentTab"></div>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Understood</button>
+                <div class="col-md-4">
+                    <button type="button" ng-click="CloseCart()" style="width:25px;">Close</button>
                 </div>
             </div>
-        </div>
-    </div>
-    
-    <script type="text/ng-template" id="tabRequisition.tpl.html">
-        <div style="width:100%;">
-            <table style="width:90%; margin: 1% auto; margin-top: 20px;">
-                <tr style="width:100%">
-                    <td style="width:10%">
-                        <label id="lblRequestDate" class="ng-cloak">{{itemName}}</label>
-                    </td>
-                </tr>
-            </table>
+            <div class="row">
+                <div class="col-md-8" style="background-color: #c54545;">
+                    <p class="small text-white m-0"><b><small>Shop &#2547;71 more and save &#2547;10 fee</small></b></p>
+                </div>
+                <div class="col-md-4 bg-dark">
+                    <p class="float-right">&#2547;&nbsp;19&nbsp;<i class="fa fa-exclamation" aria-hidden="true"></i></p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12 bg-secondary m-0">
+                    <p><b>Express Delivery</b></p>
+                </div>
+            </div>
         </div>
     </script>
     <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -224,6 +242,30 @@ text-decoration: underline;
                             data-dismiss="modal">
                         Close
                     </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--CART MODAL RESPONSIVE WITH CSSS-->
+
+    <div class="modal cartPanel fade" id="AddToCartModal" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog cartPanel">
+            <div class="modal-content cartPanel">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="staticBackdropLabel"></h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div id="mainView">
+                        <div ng-include="currentTab"></div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Understood</button>
                 </div>
             </div>
         </div>
