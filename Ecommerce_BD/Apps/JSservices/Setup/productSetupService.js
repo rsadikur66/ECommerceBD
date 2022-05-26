@@ -8,7 +8,7 @@ app.service("productSetupService", ["$http", function ($http) {
 
     function GetCategories() {
         try {
-            var url = "/CategorySetup/GetCategories";
+            var url = "/CategorySetup/GetAllCategoriesData";
             var params = {};
             return $http({
                 url: url,

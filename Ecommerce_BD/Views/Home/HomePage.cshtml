@@ -1,57 +1,23 @@
 ﻿
-@{
-    ViewBag.Title = "HomePage";
-}
-
 @*<script src="~/Apps/JScontrollers/homeController.js"></script>
 <script src="~/Apps/JSservices/homeService.js"></script>
 <script src="~/Apps/JScontrollers/products_ctr.js"></script>*@
 <style>
-    .imghresize {
-        padding: 10%;
-        height: 200px !important;
-        background-color: transparent;
-    }
-
-    .divhresize {
-        height: 50vh;
-        background-color: transparent;
-    }
-
-    .imghresize:hover {
-        -ms-transform: scale(1.3); /* IE 9 */
-        -webkit-transform: scale(1.3); /* Safari 3-8 */
-        transform: scale(1.3);
-    }
+    
 </style>
 <div >
+    <nav class="navbar navbar-light bg-light">
+        <a class="navbar-brand" href="#">Chaldal.com</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarScroll" aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarScroll">           
+            <form class="d-flex">
+                <input class="form-control mr-2" type="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-success" type="submit">Search</button>
+            </form>
+        </div>
 
-    <h3>Electronics</h3>
-    <h1>{{name}}</h1>
-    @*<table class="table table-bordered">
-            <thead>
-                <tr>
-                    <th>Product Name</th>
-                    <th>Brand</th>
-                    <th>Category</th>
-                    <th>Picture</th>
-                </tr>
-            </thead>
-            <tr ng-repeat="m in obj.homeData">
 
-                <td>{{m.Product_Name}}</td>
-                <td>{{m.Brand_Name}}</td>
-                <td>{{m.Category_Name}}</td>
-                <td><img class="imghresize" ng-src="~/images/{{m.Picture}}" alt="{{m.Picture}}"></td>
-            </tr>
-        </table>*@
-    <div class="col-md-3 thumbnail divhresize" ng-repeat="m in obj.homeData">
-        <img class="imghresize" ng-src="~/images/{{m.Picture}}" alt="{{m.Picture}}">
-        <br />
-        <p>{{m.Product_Name}}</p>
-        <p><b>Price&nbsp;:</b>&nbsp;{{m.Price}}&#2547</p>
-        <a href="#!about">page1</a>
-        <a href="#!page2">page2</a>
-        <a href="#!page3">page3</a>
-    </div>
+    </nav>
 </div>

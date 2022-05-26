@@ -1,6 +1,7 @@
 ﻿app.controller("productSetup_ctr", ["$scope", "productSetupService", function ($scope, productSetupService) {
     $scope.obj = {};
     $scope.price = "Price";
+    $scope.DocumentName = "setup product";
     $scope.files = [];
     getCategoriesData();
     function getCategoriesData() {

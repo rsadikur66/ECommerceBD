@@ -63,7 +63,8 @@ a:focus {
     left: 0;
     height: 100vh;
     z-index: 999;
-    background: #32806b9e;
+    /*background: #32806b9e;*/
+    border:solid 1px lightgray;
     color: #fff;
     transition: all 0.3s;
 }
@@ -73,8 +74,9 @@ a:focus {
     }
 
     #sidebar .sidebar-header {
-        padding: 20px;
-        background: #51535b;
+        padding: 22px;
+        /*background: #51535b;*/
+        border-bottom:solid 1px lightgray;
     }
 
     #sidebar ul.components {
@@ -215,6 +217,7 @@ pager {
     .pager > li > a {
         cursor: pointer;
     }
+
 
 .pager > .active > a {
     z-index: 2;
