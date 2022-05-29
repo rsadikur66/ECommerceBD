@@ -25,9 +25,9 @@
     @*<script src="~/Scripts/jquery-3.3.1.min.js"></script>*@
     @*<script src="~/Scripts/bootstrap.min.js"></script>*@
     <script src="~/Scripts/angular.min.js"></script>
-    <script src="~/Scripts/select.js"></script>
-    <script src="~/Scripts/angular-sanitize.min.js"></script>    
+    <script src="~/Scripts/angular-sanitize.min.js"></script>
     <script src="~/Scripts/dirPagination.js"></script>
+    <script src="~/Scripts/select.js"></script>
     @*fileupload*@
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/danialfarid-angular-file-upload/12.2.13/ng-file-upload.min.js"></script>
     <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/solid.js"></script>
@@ -84,7 +84,7 @@
                 <li ng-repeat="item in obj.categoriesList">
                     <img style="width: 20px;height: 20px;display: block;float: left;margin-right: 5px;" src="./Images/{{item.Icon}}" alt="">
                     <div>
-                        <a href="#!product/{{item.SourceUrl}}/{{item.CategoryId}}">{{item.CategoryName}}</a>
+                        <a href="#!HomePage/product/{{item.SourceUrl}}/{{item.CategoryId}}">{{item.CategoryName}}</a>
                         @*<a href="/Home/About">{{item.CategoryName}}</a>*@
                     </div>
                 </li>

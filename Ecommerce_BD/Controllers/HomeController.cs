@@ -10,23 +10,19 @@ namespace Ecommerce_BD.Controllers
 {
     public class HomeController : Controller
     {
-        public IMenu repository;
+        public IHomePage repository;
 
-        public HomeController(IMenu _repository)
+        public HomeController(IHomePage _repository)
         {
             repository = _repository;
         }
-
-        public ActionResult Products()
-        {
-            return View();
-        }
+       
         [HttpGet]
-        public ActionResult GetHomeData()
+        public ActionResult GetcategoryList()
         {
             try
             {
-                var ItemBrand = repository.GetHomeData();
+                var ItemBrand = repository.GetcategoryList();
                 string JSONstring = string.Empty;
                 JSONstring = JsonConvert.SerializeObject(ItemBrand);
                 return Json(JSONstring, JsonRequestBehavior.AllowGet);
@@ -36,6 +32,23 @@ namespace Ecommerce_BD.Controllers
                 return Json(exc.Message, JsonRequestBehavior.AllowGet);
             }
         }
+
+        [HttpGet]
+        //public ActionResult GetHomeData()
+        //{
+        //    try
+        //    {
+        //        var ItemBrand = repository.GetHomeData();
+        //        string JSONstring = string.Empty;
+        //        JSONstring = JsonConvert.SerializeObject(ItemBrand);
+        //        return Json(JSONstring, JsonRequestBehavior.AllowGet);
+        //    }
+        //    catch (Exception exc)
+        //    {
+        //        return Json(exc.Message, JsonRequestBehavior.AllowGet);
+        //    }
+        //}
+       [HttpPost]
         public ActionResult GetProductsByCat(string catId)
         {
             try
@@ -52,7 +65,7 @@ namespace Ecommerce_BD.Controllers
             //var ddd = classQ.getProductsDataByCategory(categoryId);
             //string json = JsonConvert.SerializeObject(ddd, Formatting.Indented);
             //return Ok(json);
-            
+
         }
 
         public ActionResult Contact()

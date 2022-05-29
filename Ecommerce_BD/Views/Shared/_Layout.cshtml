@@ -1,30 +1,35 @@
 ﻿<!DOCTYPE html>
-<html>
+<html ng-app="EcommerceBD">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Chaldal</title>
-    <link rel="icon" href="./Images/title-icon.png" type="image/x-icon">
+    <link rel="icon" href="~/Images/title-icon.png" type="image/x-icon">
 
     @*stylesheet references start*@
     <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
-    @*<link rel="stylesheet" href="~/Content/layout.css" />
-    <link rel="stylesheet" href="~/Content/Site.css" />*@
+    <link href="~/Content/layout.css" rel="stylesheet" />
     @*stylesheet references end*@
 
 
     @*js links starts*@
     <script src="~/Scripts/jquery-3.3.1.min.js"></script>
     <script src="~/Scripts/bootstrap.min.js"></script>
-
-
+    <script src="~/Scripts/angular.min.js"></script>
+    <script src="~/Scripts/angular-route.min.js"></script>
+    <script src="~/Scripts/angular-sanitize.min.js"></script>
+    <script src="~/Scripts/dirPagination.js"></script>
+    <script src="~/Scripts/select.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/danialfarid-angular-file-upload/12.2.13/ng-file-upload.min.js"></script>
+    <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/solid.js"></script>
+    <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js"></script>
+    <script src="~/Apps/app.js"></script>
 
     @*@Styles.Render("~/Content/css")*@
     @Scripts.Render("~/bundles/modernizr")
 </head>
 <body>
-            @RenderBody()
-
+    @RenderBody()
 </body>
 </html>

@@ -51,6 +51,7 @@ namespace Ecommerce_BD.App_Start
                 kernel.Bind<IMenu>().To<MenuRepository>();
                 kernel.Bind<IProductSetup>().To<ProductSetupRepository>();
                 kernel.Bind<ICategorySetup>().To<CategorySetupRepository>();
+                kernel.Bind<IHomePage>().To<HomePageRepository>();
                 RegisterServices(kernel);
                 return kernel;
             }

@@ -14,6 +14,7 @@ app.factory('Data', function () {
 });
 
 app.config(["$routeProvider", function ($routeProvider) {
+    
     var d = window.location;
     $routeProvider.
         when("/product/:a/:b", {

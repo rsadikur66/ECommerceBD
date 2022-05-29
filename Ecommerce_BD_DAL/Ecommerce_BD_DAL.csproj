@@ -75,12 +75,15 @@
     <Compile Include="Model\CategoryModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository\CommonDAL.cs" />
+    <Compile Include="Repository\Implement\HomePageRepository.cs" />
     <Compile Include="Repository\Implement\MenuRepository.cs" />
     <Compile Include="Repository\Implement\Setup\CategorySetupRepository.cs" />
     <Compile Include="Repository\Implement\Setup\ProductSetupRepository.cs" />
+    <Compile Include="Repository\Interface\IHomePage.cs" />
     <Compile Include="Repository\Interface\IMenu.cs" />
     <Compile Include="Repository\Interface\Setup\ICategorySetup.cs" />
     <Compile Include="Repository\Interface\Setup\IProductSetup.cs" />
+    <Compile Include="Repository\Query\HomePageQuery.cs" />
     <Compile Include="Repository\Query\MenuQuery.cs" />
     <Compile Include="Repository\Query\Setup\CategorySetupDAL.cs" />
     <Compile Include="Repository\Query\Setup\ProductSetupDAL.cs" />

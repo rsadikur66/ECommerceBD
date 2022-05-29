@@ -2,8 +2,8 @@
     var dataService = {
         //menudata: MenuData,
         GetProdDataByCat: GetProdDataByCat,
-        GetProductsData: GetProductsData
-
+        GetProductsData: GetProductsData,
+         getcategoryList: getcategoryList
     };
     return dataService;
 
@@ -24,7 +24,23 @@
             throw ex;
         }
     }
-
+    function getcategoryList() {
+        try {
+            var url = "/Home/GetcategoryList";
+            var params = {};
+            return $http({
+                url: url,
+                method: "GET",
+                data: params
+            }).then(function (results) {
+                return results.data;
+            }).catch(function (ex) {
+                throw ex;
+            });
+        } catch (ex) {
+            throw ex;
+        }
+    }
     function GetProdDataByCat(catId) {
         try {
             var params = { catId: catId };
@@ -32,7 +48,7 @@
             return $http({
                 url: url,
                 method: "POST",
-                //contentType: "application/json",
+                contentType: "application/json",
                 data: params
             }).then(function (results) {
                 return results.data;

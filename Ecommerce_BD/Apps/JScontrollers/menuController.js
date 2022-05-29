@@ -1,18 +1,20 @@
-﻿app.controller('menuController', ["$scope", "$window", "$location", "$filter", "$timeout", "menuService", function ($scope, $window, $location, $filter, $timeout, menuService) {
-    $scope.name = "DokanBD";
+﻿app.controller('menuController', ["$scope", "$routeParams", "$window", "$location", "$filter", "$timeout", "menuService", function ($scope, $routeParams, $window, $location, $filter, $timeout, menuService) {
+    /*$scope.name = "DokanBD";*/
     $scope.obj = {};
-    $scope.obj.formsList = {};
-    getgriddata();
+    $scope.routevalue = $routeParams.a;
+    $scope.categoryId = $routeParams.b;
+   /* $scope.obj.formsList = {};*/
+    /*getgriddata();*/
     getcategoryList();
-    function getgriddata() {
-        $scope.menudata = [];
-        var gridData = menuService.GetMenuData();
-        gridData.then(function (data) {
-            $scope.obj.formsList = JSON.parse(data);
-            $scope.Menuheader = $scope.obj.formsList[0].formtype_name;
-            console.log($scope.obj.formsList);
-        });
-    }
+    //function getgriddata() {
+    //    $scope.menudata = [];
+    //    var gridData = menuService.GetMenuData();
+    //    gridData.then(function (data) {
+    //        $scope.obj.formsList = JSON.parse(data);
+    //        $scope.Menuheader = $scope.obj.formsList[0].formtype_name;
+    //        console.log($scope.obj.formsList);
+    //    });
+    //}
     function getcategoryList() {
         $scope.categoriesList = [];
         var categoryData = menuService.getcategoryList();
@@ -63,5 +65,3 @@ app.filter('propsFilter', function () {
         return out;
     };
 });
-
-

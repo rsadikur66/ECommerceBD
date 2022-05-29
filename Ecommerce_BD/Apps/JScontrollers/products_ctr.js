@@ -1,19 +1,21 @@
-﻿app.controller("products_ctr", ['$scope', '$routeParams', "homeService", function ($scope, $routeParams, homeService) {
+﻿app.controller("products_ctr", ["$scope", "$routeParams", "homeService", function ($scope, $routeParams, homeService) {
     $scope.routevalue = $routeParams.a;
     $scope.categoryId = $routeParams.b;
+    getProdDataByCategory($scope.categoryId);
     $scope.qty_input_val = 1;
     $scope.disableQty = true;
     document.getElementById('mainView').style.display = 'none';
    // $scope.currentTab = 'tabRequisition.tpl.html';
-    getProdDataByCategory($scope.categoryId);
+    
     function getProdDataByCategory(catId) {
+        debugger;
         var catData = homeService.GetProdDataByCat(catId);
         catData.then(function (data) {
             $scope.productList = JSON.parse(data);
             //for (var i = 0; i < $scope.productList.length; i++) {
             //    $scope.productList[i].QuantityName = $scope.productList[i].QuantityName == null ? '&nbsp;' : $scope.productList[i].QuantityName;
             //}
-            console.log($scope.productList);
+           /* console.log($scope.productList);*/
         })
     }
 

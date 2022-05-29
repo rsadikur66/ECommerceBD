@@ -1,23 +1,43 @@
-﻿
-@*<script src="~/Apps/JScontrollers/homeController.js"></script>
+﻿@*<script src="~/Apps/app.js"></script>*@
+@*<script src="~/Apps/JScontrollers/menuController.js"></script>
+    <script src="~/Apps/JSservices/menuService.js"></script>*@
+@*<script src="~/Apps/JScontrollers/products_ctr.js"></script>*@
+<script src="~/Apps/JScontrollers/homeController.js"></script>
+<script src="~/Apps/JScontrollers/products_ctr.js"></script>
 <script src="~/Apps/JSservices/homeService.js"></script>
-<script src="~/Apps/JScontrollers/products_ctr.js"></script>*@
+
 <style>
-    
+    .bg-yellow {
+        background-color: #fff700;
+    }
+
+    #sidebar ul li {
+        list-style: none;
+        padding: 5px;
+        font-size: 14px;
+    }
 </style>
-<div >
-    <nav class="navbar navbar-light bg-light">
-        <a class="navbar-brand" href="#">Chaldal.com</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarScroll" aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarScroll">           
-            <form class="d-flex">
-                <input class="form-control mr-2" type="search" placeholder="Search" aria-label="Search">
-                <button class="btn btn-outline-success" type="submit">Search</button>
-            </form>
+<div ng-controller="homeController" class="wrapper">
+    <nav id="sidebar">
+        <div class="sidebar-header">
+            <a href="/">
+                <img src="~/Images/chaldal-com.jpg" alt="chaldal.com" width="150px" height="50px" />
+            </a>
+
         </div>
-
-
+        <ul>
+            <li ng-repeat="item in obj.categoriesList">
+                <img style="width: 20px;height: 20px;display: block;float: left;margin-right: 5px;" src="~/Images/{{item.Icon}}" alt="">
+                <div>
+                    <a href="#!product/{{item.SourceUrl}}/{{item.CategoryId}}">{{item.CategoryName}}</a>
+                   
+                </div>
+            </li>
+        </ul>
     </nav>
+    <div class="col-md-6">
+        <div class="ng-view"></div>
+    </div>
+
 </div>
+
